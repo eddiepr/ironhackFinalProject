@@ -1,6 +1,6 @@
 class Square < ActiveRecord::Base
-	belongs_to(:Game)
+	belongs_to(:game)
 
-	spots = Square.all
-	render(:json => {:matches => matches.to_json({:include => :winner}), :win_percentage => percentage.to_json})
+	# spots = Square.all
+	# render(:json => {:matches => matches.to_json({:include => :winner}), :win_percentage => percentage.to_json})
 end

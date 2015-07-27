@@ -1,3 +1,11 @@
 <h1> chess </h1>
 
 <a href="/game"> Join Game </a>
+
+<% @game.each do |game|%>
+	<% game.squares.each do |square| %>
+		<%= square.contents %>
+	<%end%>
+	<br>
+	<br>
+<%end%>

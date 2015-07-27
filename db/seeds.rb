@@ -82,6 +82,9 @@ Square.create(:game_id => 1, :x => 8, :y => 8, :contents => "rook")
 
 
 
+Game.create(:turn => "white", :finished => false, :winner => "none")
+
+
 
 
 
