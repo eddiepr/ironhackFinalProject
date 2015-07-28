@@ -3,6 +3,12 @@
 
 $(document).on('ready', function () {
 
+	// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
+	// the database to change the contents in the corresponding row in the corresponding game
+
+
+
+
 	var piece
 	$('.row-odd-column-odd').on('click', function () {
 		console.log("hi");
@@ -32,6 +38,11 @@ $(document).on('ready', function () {
 			if (number <= 64) { //the json object is sending me twice as many items as are in the database for some reason
 				for (var i=1; i<9; i++) {
 					for (var j=1; j<9; j++) {
+						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
+							if ( $(this).children().length > 0 ) {
+								console.log($(this));
+							}
+						})
 						if (item.y == i && item.x == j && item.contents == "rook") {
 							$('.row' + i.toString() + '.column' + j.toString()).append("<div class='glyphicon glyphicon-tower'></div>")
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
