@@ -1,16 +1,16 @@
 
 <div class="row">
-	<!-- do a for j in 1..8 to be able to use to reference exactly which square and match it to the database id -->
+	<!-- do a for j in 1..8 to be able to use to reference exactly which square and match it to the database id 
+Don't do that here actually.  Do it in js file with ajax and jquery append -->
 	<% for i in 1..8 %>
 		<% if (i%2 == 0) %>
-			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-odd-column-odd ">
+			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-odd-column-even ">
 
-				<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any -->
+				<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any.  Don't do that here actually.  Do it in js file with ajax and jquery append -->
 			</div>
 		<% else %>
-			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-odd-column-even ">
-				<!-- <div class ="glyphicon glyphicon-tower"> -->
-				<i class="fa fa-adn"></i>
+			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-odd-column-odd ">
+				<!-- <div class ="glyphicon glyphicon-tower"></div> -->
 			</div>
 		<% end %>
 		<% i = i + 1 %>

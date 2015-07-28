@@ -3,12 +3,12 @@
 <div class="row">
 	<% for i in 1..8 %>
 		<% if (i%2 == 0) %>
-			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-even-column-odd ">
+			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-even-column-even ">
 				
 				<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any -->
 			</div>
 		<% else %>
-			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-even-column-even ">
+			<div class="col-sm-1 column <%= 'column' + i.to_s %> row-even-column-odd ">
 			</div>
 		<% end %>
 		<% i = i + 1 %>
