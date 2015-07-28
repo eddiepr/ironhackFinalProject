@@ -11,7 +11,6 @@
 			<% for i in 1..8 %>
 				<% if (i%2 == 0) %>
 					<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even ">
-
 						<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any.  Don't do that here actually.  Do it in js file with ajax and jquery append -->
 					</div>
 				<% else %>
@@ -21,8 +20,6 @@
 				<% end %>
 			<% end %>
 		</div>
-
-
 		<div class="row">
 			<% for i in 1..8  %>
 				<% if (i%2 == 0) %>
