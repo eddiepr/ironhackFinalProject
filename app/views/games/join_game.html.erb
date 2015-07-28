@@ -1,10 +1,49 @@
 
 	<h1> Multiplayer Chess </h1>
 	<div class="container">
-		<% 4.times do %>
-			<%= render("partials/boardrow") %>
-			<%= render("partials/boardrowEven") %>
-		<% end %>
+
+
+<% for j in 1..8 %>
+	<% if (j%2 != 0) %>
+		<div class="row">
+			<!-- do a for j in 1..8 to be able to use to reference exactly which square and match it to the database id 
+		Don't do that here actually.  Do it in js file with ajax and jquery append -->
+			<% for i in 1..8 %>
+				<% if (i%2 == 0) %>
+					<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even ">
+
+						<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any.  Don't do that here actually.  Do it in js file with ajax and jquery append -->
+					</div>
+				<% else %>
+					<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd ">
+						<!-- <div class ="glyphicon glyphicon-tower"></div> -->
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+
+
+		<div class="row">
+			<% for i in 1..8  %>
+				<% if (i%2 == 0) %>
+					<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-even ">
+						<!-- use i as reference for x y value in square database and use it to render correct glyphicon if any -->
+					</div>
+				<% else %>
+					<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-odd ">
+					</div>
+				<% end %>
+				<!-- had i = i + 1 here with the for loop -->
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+
+
+
+<!-- render("partials/boardrow") %> -->
+<!-- 			render("partials/boardrowEven") %> -->
+		
 	</div>
 	<a href="/">Leave Game </a>
 

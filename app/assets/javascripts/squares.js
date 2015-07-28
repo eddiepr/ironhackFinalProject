@@ -22,8 +22,16 @@ $(document).on('ready', function () {
 	}
 	function onSaveSuccess (response) {
 		console.log("success");
-		console.log(response.each.contents);
 
-		// console.log(response.contents);
+		response.forEach(function (item) {
+			console.log(item.x);
+			console.log(item.y);
+
+
+		})
+
+		//if x ==1 && y==1 { append to .div1}
+		//use an i loop to append the contents for each square to the corresponding div for that square with the
+		//glyphicon that corresponds to the string in item.contents
 	}
 })
