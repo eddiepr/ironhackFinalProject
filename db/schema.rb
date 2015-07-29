@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727175123) do
+ActiveRecord::Schema.define(version: 20150729161447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20150727175123) do
     t.string   "turn"
     t.boolean  "finished"
     t.string   "winner"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "move_number"
   end
 
   create_table "squares", force: :cascade do |t|
@@ -29,6 +30,16 @@ ActiveRecord::Schema.define(version: 20150727175123) do
     t.integer  "x"
     t.integer  "y"
     t.string   "contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

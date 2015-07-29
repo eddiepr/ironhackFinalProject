@@ -82,20 +82,20 @@ Square.create(:game_id => 1, :x => 8, :y => 8, :contents => "rook")
 
 
 
-Game.create(:turn => "white", :finished => false, :winner => "none")
-Game.create(:turn => "black", :finished => false, :winner => "none")
-Game.create(:turn => "white", :finished => false, :winner => "none")
-Game.create(:turn => "white", :finished => false, :winner => "none")
-Game.create(:turn => "black", :finished => false, :winner => "none")
+Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
+Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 0)
+Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
+Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
+Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 0)
 
 
 Square.create(:game_id => 2, :x => 1, :y => 1, :contents => "rook")
 Square.create(:game_id => 2, :x => 2, :y => 1, :contents => "knight")
-Square.create(:game_id => 2, :x => 3, :y => 1, :contents => "bishop")
+Square.create(:game_id => 2, :x => 3, :y => 1, :contents => "nil")
 Square.create(:game_id => 2, :x => 4, :y => 1, :contents => "queen")
 Square.create(:game_id => 2, :x => 5, :y => 1, :contents => "king")
 Square.create(:game_id => 2, :x => 6, :y => 1, :contents => "bishop")
-Square.create(:game_id => 2, :x => 7, :y => 1, :contents => "knight")
+Square.create(:game_id => 2, :x => 7, :y => 1, :contents => "nil")
 Square.create(:game_id => 2, :x => 8, :y => 1, :contents => "rook")
 
 Square.create(:game_id => 2, :x => 1, :y => 2, :contents => "pawn")
@@ -117,7 +117,7 @@ Square.create(:game_id => 2, :x => 7, :y => 3, :contents => "nil")
 Square.create(:game_id => 2, :x => 8, :y => 3, :contents => "nil")
 
 Square.create(:game_id => 2, :x => 1, :y => 4, :contents => "nil")
-Square.create(:game_id => 2, :x => 2, :y => 4, :contents => "nil")
+Square.create(:game_id => 2, :x => 2, :y => 4, :contents => "bishop")
 Square.create(:game_id => 2, :x => 3, :y => 4, :contents => "nil")
 Square.create(:game_id => 2, :x => 4, :y => 4, :contents => "nil")
 Square.create(:game_id => 2, :x => 5, :y => 4, :contents => "nil")

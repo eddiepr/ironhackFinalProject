@@ -3,7 +3,7 @@
 
 $(document).on('ready', function () {
 
-	var piece
+	var piece;
 	var postingFlag = true;
 	var movingFlag = true;
 
@@ -16,11 +16,46 @@ $(document).on('ready', function () {
 	    dataType: "json"
 	});
 
-
 	function moveToSquarePartTwo () {
 		if (movingFlag == true) {
+
+			var updateSquaresData = {
+
+			}
+			var updateGamesData = {
+				// moveCount: //some number,
+				// finishedStatus: //status,
+
+			}
+
+			var updateTurnsData = {
+
+			}
+
+
+			$.ajax({
+			    type: "PATCH",
+			    url: "/move",
+			    data: 'placeholder',  //this is where I need to post the updated contents in games.id#.squares table.
+		    					// Also need to post updated moveNumber in games.id table.
+		    					// Also need to have a users table and update how many moves they made for that side in a 
+		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+			    success: onSaveSuccessPost,
+			    error: onSaveFailurePost,
+			});
+
 			console.log(movingFlag);
 			movingFlag = false;
+
+			$.ajax({
+			    type: "GET",
+			    url: "/move",
+			    data: '',
+			    success: onSaveSuccess,
+			    error: onSaveFailure,
+			    dataType: "json"
+			});
+			//update the board here with new layout
 		}
 	}
 
@@ -65,15 +100,7 @@ $(document).on('ready', function () {
 									moveToSquare (); 
 									// console.log("fkjgdfkjgfdkjgfdjkgkjfdgjkfjdjgjdfjkgsdfkjg");// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
 														// the database to change the contents in the corresponding row in the corresponding game
-														// I might need to do authenticity token thing for this
-									$.ajax({
-									    type: "POST",
-									    url: "/move",
-									    data: 'fsdfd',
-									    success: onSaveSuccessPost,
-									    error: onSaveFailurePost,
-									    dataType: "json"
-									});
+														// I might need to do authenticity token thing for this		
 								}
 							}
 						})
