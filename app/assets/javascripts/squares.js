@@ -3,12 +3,6 @@
 
 $(document).on('ready', function () {
 
-	// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
-	// the database to change the contents in the corresponding row in the corresponding game
-
-
-
-
 	var piece
 	$('.row-odd-column-odd').on('click', function () {
 		console.log("hi");
@@ -22,7 +16,7 @@ $(document).on('ready', function () {
 	    success: onSaveSuccess,
 	    error: onSaveFailure,
 	    dataType: "json"
-	  });
+	});
 
 	function onSaveFailure (err) {
 		console.log(err);
@@ -40,7 +34,11 @@ $(document).on('ready', function () {
 					for (var j=1; j<9; j++) {
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if ( $(this).children().length > 0 ) {
-								console.log($(this));
+								console.log($(this));// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
+													// the database to change the contents in the corresponding row in the corresponding game
+													// I might need to do authenticity token thing for this
+
+
 							}
 						})
 						if (item.y == i && item.x == j && item.contents == "rook") {
