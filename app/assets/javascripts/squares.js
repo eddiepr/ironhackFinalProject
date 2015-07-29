@@ -6,6 +6,7 @@ $(document).on('ready', function () {
 	var piece;
 	var postingFlag = true;
 	var movingFlag = true;
+	var gameId;
 
 	$.ajax({
 	    type: "GET",
@@ -25,7 +26,7 @@ $(document).on('ready', function () {
 			}
 		}
 
-		response.forEach(function (item) {
+		response.spaces.forEach(function (item) {
 
 			number = number + 1;  //the json object is sending me twice as many items as are in the database for some reason
 			

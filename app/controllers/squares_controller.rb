@@ -2,13 +2,17 @@ class SquaresController < ApplicationController
 
 	def get_layout
 		gm = Game.find_by(id: 2)
+		gmId = gm.id
 		spaces = gm.squares.all
 		# do something in regards to getting the squares for whichever game last had a move made on it aka whichever
 		# game last did an ajax post
 		# game = Game.first
 		# add another condition here to get the first game that was created that is not currently in use by a user
 		# and also is not the game that the user last made a move on
-		render json: spaces
+		render json: {
+			:spaces => spaces, 
+			:gmId => gmId
+		}
 	end
 
 	def update
