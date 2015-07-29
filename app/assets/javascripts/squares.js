@@ -41,9 +41,8 @@ $(document).on('ready', function () {
 
 			}
 			var updateGamesData = {
-				// moveCount: ,
-				// finishedStatus: //status,
-
+				id: 2, //change to whichever game user is currently on
+				finishedStatus: false
 			}
 			var updateTurnsData = {
 
@@ -52,7 +51,7 @@ $(document).on('ready', function () {
 			$.ajax({
 			    type: "PATCH",
 			    url: "/move",
-			    data: 'placeholder',  //this is where I need to post the updated contents in games.id#.squares table.
+			    data: updateGamesData,  //this is where I need to post the updated contents in games.id#.squares table.
 		    					// Also need to post updated moveNumber in games.id table.
 		    					// Also need to have a users table and update how many moves they made for that side in a 
 		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
@@ -78,14 +77,25 @@ $(document).on('ready', function () {
 		console.log(movingFlag);
 			movingFlag = false;
 
+
 			$.ajax({
 			    type: "GET",
-			    url: "/move",
+			    url: "/moves",
 			    data: '',
 			    success: onSaveSuccess,
 			    error: onSaveFailure,
 			    dataType: "json"
 			});
+
+			// $.ajax({  Instead of having this ajax here, use the controller to post the data to the proper url
+						 //and do a get route for that url
+			//     type: "GET",
+			//     url: "/move",
+			//     data: '',
+			//     success: onSaveSuccess,
+			//     error: onSaveFailure,
+			//     dataType: "json"
+			// });
 			//update the board here with new layout
 		// console.log("posting success");
 	}

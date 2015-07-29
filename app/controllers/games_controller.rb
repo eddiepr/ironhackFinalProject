@@ -10,7 +10,7 @@ class GamesController < ApplicationController
 	end
 
 	def get_board
-		render "join_game"
+		render "join_game"  #render the page with updated board
 	end
 
 	def create_game
@@ -33,8 +33,9 @@ class GamesController < ApplicationController
 
 	def update
 
-
-
+		game = Game.find(params[:id])
+		game.update_attribute(:finished, params[:data])
+		render nothing: true
 		# @prj = Project.find(params[:project_id])
 		# @entr = @prj.entries.find(params[:id]) 
 		# 	@entr.update_attributes(entry_params)
