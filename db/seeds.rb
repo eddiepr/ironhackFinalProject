@@ -83,10 +83,10 @@ Square.create(:game_id => 1, :x => 8, :y => 8, :contents => "rook")
 
 
 Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
-Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 0)
-Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
-Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 0)
-Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 0)
+Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 5)
+Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 546)
+Game.create(:turn => "white", :finished => false, :winner => "none", :move_number => 2000)
+Game.create(:turn => "black", :finished => false, :winner => "none", :move_number => 3845)
 
 
 Square.create(:game_id => 2, :x => 1, :y => 1, :contents => "rook")

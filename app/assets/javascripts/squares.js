@@ -16,6 +16,24 @@ $(document).on('ready', function () {
 	    dataType: "json"
 	});
 
+	// $.ajax({    // this is for getting the data from the games also to get the moveCount attribute and maybe others
+	//     type: "GET",
+	//     url: "/someroute",   
+	//     data: '',
+	//     success: onSaveSuccess...,
+	//     error: onSaveFailure...,
+	//     dataType: "json"
+	// });
+
+	// $.ajax({    // Maybe I need to get data from the users also
+	//     type: "GET",
+	//     url: "/someother route",   
+	//     data: '',
+	//     success: onSaveSuccess...,
+	//     error: onSaveFailure...,
+	//     dataType: "json"
+	// });
+
 	function moveToSquarePartTwo () {
 		if (movingFlag == true) {
 
@@ -23,15 +41,13 @@ $(document).on('ready', function () {
 
 			}
 			var updateGamesData = {
-				// moveCount: //some number,
+				// moveCount: ,
 				// finishedStatus: //status,
 
 			}
-
 			var updateTurnsData = {
 
 			}
-
 
 			$.ajax({
 			    type: "PATCH",
@@ -40,22 +56,9 @@ $(document).on('ready', function () {
 		    					// Also need to post updated moveNumber in games.id table.
 		    					// Also need to have a users table and update how many moves they made for that side in a 
 		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
-			    success: onSaveSuccessPost,
-			    error: onSaveFailurePost,
+			    success: onSaveSuccessPatch,
+			    error: onSaveFailurePatch,
 			});
-
-			console.log(movingFlag);
-			movingFlag = false;
-
-			$.ajax({
-			    type: "GET",
-			    url: "/move",
-			    data: '',
-			    success: onSaveSuccess,
-			    error: onSaveFailure,
-			    dataType: "json"
-			});
-			//update the board here with new layout
 		}
 	}
 
@@ -67,11 +70,23 @@ $(document).on('ready', function () {
 		}
 	}
 
-	function onSaveFailurePost (err) {
+	function onSaveFailurePatch (err) {
 		// console.log("error Posting move to database");
 	}
 
-	function onSaveSuccessPost (response) {
+	function onSaveSuccessPatch (response) {
+		console.log(movingFlag);
+			movingFlag = false;
+
+			$.ajax({
+			    type: "GET",
+			    url: "/move",
+			    data: '',
+			    success: onSaveSuccess,
+			    error: onSaveFailure,
+			    dataType: "json"
+			});
+			//update the board here with new layout
 		// console.log("posting success");
 	}
 
@@ -88,9 +103,8 @@ $(document).on('ready', function () {
 			
 			if (number <= 64) { //the json object is sending me twice as many items as are in the database for some reason
 				for (var i=1; i<9; i++) {
-					for (var j=1; j<9; j++) {
-						
-						
+					for (var j=1; j<9; j++) {				
+
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
 								console.log(postingFlag);

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
 
   get "/squares" => "squares#get_layout"
+  get "/games" => "games#get_games_data"
+
 
   patch "/move" => "games#update"  
   get "/move" => "squares#get_layout"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
