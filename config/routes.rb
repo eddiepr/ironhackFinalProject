@@ -5,13 +5,9 @@ Rails.application.routes.draw do
   # get "/json" => "squares#get_json"
 
 
-
-
-
-
-
-
   get "/squares" => "squares#get_layout"
+
+  get "/move" => "squares#get_layout"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

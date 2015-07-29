@@ -4,10 +4,8 @@
 $(document).on('ready', function () {
 
 	var piece
-	$('.row-odd-column-odd').on('click', function () {
-		console.log("hi");
-	})  
-
+	var postingFlag = true;
+	var movingFlag = true;
 
 	$.ajax({
 	    type: "GET",
@@ -17,6 +15,30 @@ $(document).on('ready', function () {
 	    error: onSaveFailure,
 	    dataType: "json"
 	});
+
+
+	function moveToSquarePartTwo () {
+		if (movingFlag == true) {
+			console.log(movingFlag);
+			movingFlag = false;
+		}
+	}
+
+	function moveToSquare () {
+		for (var i=1; i<9; i++) {
+			for (var j=1; j<9; j++) {				
+				$('.row' + i.toString() + '.column' + j.toString()).on('click', moveToSquarePartTwo);
+			}
+		}
+	}
+
+	function onSaveFailurePost (err) {
+		// console.log("error Posting move to database");
+	}
+
+	function onSaveSuccessPost (response) {
+		// console.log("posting success");
+	}
 
 	function onSaveFailure (err) {
 		console.log(err);
@@ -32,13 +54,27 @@ $(document).on('ready', function () {
 			if (number <= 64) { //the json object is sending me twice as many items as are in the database for some reason
 				for (var i=1; i<9; i++) {
 					for (var j=1; j<9; j++) {
+						
+						
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
-							if ( $(this).children().length > 0 ) {
-								console.log($(this));// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
-													// the database to change the contents in the corresponding row in the corresponding game
-													// I might need to do authenticity token thing for this
-
-
+							if (postingFlag == true) {
+								console.log(postingFlag);
+								postingFlag = false;
+								if ( $(this).children().length > 0 ) {
+									movingFlag = true;
+									moveToSquare (); 
+									// console.log("fkjgdfkjgfdkjgfdjkgkjfdgjkfjdjgjdfjkgsdfkjg");// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
+														// the database to change the contents in the corresponding row in the corresponding game
+														// I might need to do authenticity token thing for this
+									$.ajax({
+									    type: "POST",
+									    url: "/move",
+									    data: 'fsdfd',
+									    success: onSaveSuccessPost,
+									    error: onSaveFailurePost,
+									    dataType: "json"
+									});
+								}
 							}
 						})
 						if (item.y == i && item.x == j && item.contents == "rook") {

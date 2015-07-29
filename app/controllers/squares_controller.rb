@@ -6,7 +6,6 @@ class SquaresController < ApplicationController
 	end
 
 
-
 	# def post_json
 	# 	squares = Square.all #find_by(:id => params[:user_id])
 
