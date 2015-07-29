@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   # get "/json" => "squares#get_json"
 
 
+  get "/new_board" => "squares#get_board"
+
   get "/squares" => "squares#get_layout"
   get "/games" => "games#get_games_data"
-
 
   patch "/move" => "games#update"  
   get "/move" => "squares#get_layout"

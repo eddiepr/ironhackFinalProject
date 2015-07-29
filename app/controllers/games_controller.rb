@@ -8,22 +8,27 @@ class GamesController < ApplicationController
 	def join_game
 		render "join_game"
 	end
+
+	def get_board
+		render "join_game"
+	end
+
 	def create_game
 		# I dont't remember what this method was supposed to be for
 	end
 
 	def get_games_data
 		# trying to get game with highest move_number attribute to be passed to the ajax get request
-		move_numbers_array = []
-		Game.all.each do | gm |
-			gm.move_number
-			move_numbers_array.push(gm)
-		end
-		move_numbers_array.order(asc)
-		num = move_numbers_array(0)
-		game_data = Game.find_by(:move_number => num)
+		# move_numbers_array = []
+		# Game.all.each do | gm |
+		# 	gm.move_number
+		# 	move_numbers_array.push(gm)
+		# end
+		# move_numbers_array.order(asc)
+		# num = move_numbers_array(0)
+		# game_data = Game.find_by(:move_number => num)
 
-		render json: game_data
+		# render json: game_data
 	end
 
 	def update

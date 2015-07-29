@@ -3,8 +3,11 @@ class SquaresController < ApplicationController
 	def get_layout
 		# do something in regards to getting the squares for whichever game last had a move made on it aka whichever
 		# game last did an ajax post
-		squares = Square.all #find_by(:id => params[:user_id])
-		render json: squares
+		game = Game.first
+		# add another condition here to get the first game that was created that is not currently in use by a user
+		# and also is not the game that the user last made a move on
+		spots = game.squares.all #find_by(:id => params[:user_id])
+		render json: spots
 	end
 
 	def update
