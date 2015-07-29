@@ -16,97 +16,15 @@ $(document).on('ready', function () {
 	    dataType: "json"
 	});
 
-	// $.ajax({    // this is for getting the data from the games also to get the moveCount attribute and maybe others
-	//     type: "GET",
-	//     url: "/someroute",   
-	//     data: '',
-	//     success: onSaveSuccess...,
-	//     error: onSaveFailure...,
-	//     dataType: "json"
-	// });
-
-	// $.ajax({    // Maybe I need to get data from the users also
-	//     type: "GET",
-	//     url: "/someother route",   
-	//     data: '',
-	//     success: onSaveSuccess...,
-	//     error: onSaveFailure...,
-	//     dataType: "json"
-	// });
-
-	function moveToSquarePartTwo () {
-		if (movingFlag == true) {
-
-			var updateSquaresData = {
-
-			}
-			var updateGamesData = {
-				id: 2, //change to whichever game user is currently on
-				finishedStatus: false
-			}
-			var updateTurnsData = {
-
-			}
-
-			$.ajax({
-			    type: "PATCH",
-			    url: "/move",
-			    data: updateGamesData,  //this is where I need to post the updated contents in games.id#.squares table.
-		    					// Also need to post updated moveNumber in games.id table.
-		    					// Also need to have a users table and update how many moves they made for that side in a 
-		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
-			    success: onSaveSuccessPatch,
-			    error: onSaveFailurePatch,
-			});
-		}
-	}
-
-	function moveToSquare () {
-		for (var i=1; i<9; i++) {
-			for (var j=1; j<9; j++) {				
-				$('.row' + i.toString() + '.column' + j.toString()).on('click', moveToSquarePartTwo);
-			}
-		}
-	}
-
-	function onSaveFailurePatch (err) {
-		// console.log("error Posting move to database");
-	}
-
-	function onSaveSuccessPatch (response) {
-		console.log(movingFlag);
-			movingFlag = false;
-
-
-			$.ajax({
-			    type: "GET",
-			    url: "/moves",
-			    data: '',
-			    success: onSaveSuccess,
-			    error: onSaveFailure,
-			    dataType: "json"
-			});
-
-			// $.ajax({  Instead of having this ajax here, use the controller to post the data to the proper url
-						 //and do a get route for that url
-			//     type: "GET",
-			//     url: "/move",
-			//     data: '',
-			//     success: onSaveSuccess,
-			//     error: onSaveFailure,
-			//     dataType: "json"
-			// });
-			//update the board here with new layout
-		// console.log("posting success");
-	}
-
-	function onSaveFailure (err) {
-		console.log(err);
-		console.log("error getting chess pieces layout");
-	}
-	function onSaveSuccess (response) {
-		console.log(response);
+	function appendPieces (response) {
 		var number = 0;
+
+		for (var i=1; i<9; i++) {
+			for (var j=1; j<9; j++) {
+				$('.row' + i.toString() + '.column' + j.toString()).empty();
+			}
+		}
+
 		response.forEach(function (item) {
 
 			number = number + 1;  //the json object is sending me twice as many items as are in the database for some reason
@@ -121,10 +39,7 @@ $(document).on('ready', function () {
 								postingFlag = false;
 								if ( $(this).children().length > 0 ) {
 									movingFlag = true;
-									moveToSquare (); 
-									// console.log("fkjgdfkjgfdkjgfdjkgkjfdgjkfjdjgjdfjkgsdfkjg");// if user clicks a square that has a div with a piece, and also clicks an empty square, it will update 
-														// the database to change the contents in the corresponding row in the corresponding game
-														// I might need to do authenticity token thing for this		
+									moveToSquare (); 	
 								}
 							}
 						})
@@ -151,5 +66,57 @@ $(document).on('ready', function () {
 				}
 			}
 		})
+	}
+
+	function moveToSquarePartTwo () {
+		if (movingFlag == true) {
+
+			var updateSquaresData = {
+
+			}
+			var updateGamesData = {
+				id: 2, //change to whichever game user is currently on
+				finishedStatus: false
+			}
+			var updateTurnsData = {
+
+			}
+
+			$.ajax({
+			    type: "PATCH",
+			    url: "/move",
+			    data: updateGamesData,  //this is where I need to post the updated contents in games.id#.squares table.
+		    					// Also need to have a users table and update how many moves they made for that side in a 
+		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+			    success: onSaveSuccessPatch,
+			    error: onSaveFailurePatch,
+			});
+		}
+	}
+
+	function moveToSquare () {
+		for (var i=1; i<9; i++) {
+			for (var j=1; j<9; j++) {				
+				$('.row' + i.toString() + '.column' + j.toString()).on('click', moveToSquarePartTwo);
+			}
+		}
+	}
+
+	function onSaveFailurePatch (err) {
+		console.log("error Posting move to database");
+	}
+
+	function onSaveSuccessPatch (response) {
+		appendPieces(response);
+	}
+
+	function onSaveFailure (err) {
+		console.log(err);
+		console.log("error getting chess pieces layout");
+	}
+	function onSaveSuccess (response) {
+		console.log(response);
+		appendPieces (response);
+		
 	}
 })

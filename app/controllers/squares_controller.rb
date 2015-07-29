@@ -1,7 +1,7 @@
 class SquaresController < ApplicationController
 
 	def get_layout
-		gm = Game.find_by(id: 1)
+		gm = Game.find_by(id: 2)
 		spaces = gm.squares.all
 		# do something in regards to getting the squares for whichever game last had a move made on it aka whichever
 		# game last did an ajax post
@@ -12,6 +12,7 @@ class SquaresController < ApplicationController
 	end
 
 	def update
+
 	end
 
 	# def post_json

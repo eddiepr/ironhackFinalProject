@@ -35,7 +35,13 @@ class GamesController < ApplicationController
 
 		game = Game.find(params[:id])
 		game.update_attribute(:finished, params[:data])
-		render nothing: true
+
+
+
+		gm = Game.first
+		spots = gm.squares.all 
+		render json: spots
+		# render nothing: true
 		# @prj = Project.find(params[:project_id])
 		# @entr = @prj.entries.find(params[:id]) 
 		# 	@entr.update_attributes(entry_params)
