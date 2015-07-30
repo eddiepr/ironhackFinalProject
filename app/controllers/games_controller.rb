@@ -40,7 +40,13 @@ class GamesController < ApplicationController
 		game.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
 
 		# add something for on save failure I guess here
+		squares = game.squares.all
 		move = params[:moveToSquareAndContents]
+		square = squares.where("x = ? AND y = ?", move[:x], move[:y])
+		puts "puts square is below"
+		puts square
+		puts "puts square is above"
+		square.update_attribute(:contents, move[:contents])
 
 		render json: { :message => "Update successful" }
 

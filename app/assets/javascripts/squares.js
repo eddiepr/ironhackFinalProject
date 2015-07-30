@@ -89,10 +89,14 @@ $(document).on('ready', function () {
 								postingFlag = false;
 								console.log($(this));
 								if ( $(this).children().length > 0 ) {
-									clickedPieceSquare = {x: j, 
-										y: i
+									console.log(i);
+									console.log($(this).attr('data-column'));
+									console.log($(this).attr('data-row'));
+									clickedPieceSquare = {x: $(this).attr('data-column'), 
+										y: $(this).attr('data-row')
 									}
 									contents = $(this).find('[data-title]').data('title');
+									console.log(contents);
 									movingFlag = true;
 									moveToSquare (response); 	
 								}
@@ -138,8 +142,8 @@ $(document).on('ready', function () {
 				$('.row' + i.toString() + '.column' + j.toString()).on('click', function(){
 					console.log(contents);
 					moveToSquareAndContents = {
-						x: j,
-						y: i,
+						x: $(this).attr('data-column'),
+						y: $(this).attr('data-row'),
 						contents: contents
 					}
 					moveToSquarePartTwo(response)
