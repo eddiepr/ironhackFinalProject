@@ -42,7 +42,8 @@ class GamesController < ApplicationController
 		# add something for on save failure I guess here
 		squares = game.squares.all
 		move = params[:moveToSquareAndContents]
-		square = squares.where("x = ? AND y = ?", move[:x], move[:y])
+		square_array = squares.where("x = ? AND y = ?", move[:x], move[:y])
+		square = square_array[0]
 		puts "puts square is below"
 		puts square
 		puts "puts square is above"
