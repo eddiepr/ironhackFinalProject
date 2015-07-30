@@ -7,6 +7,10 @@ $(document).on('ready', function () {
 	var postingFlag = true;
 	var movingFlag = true;
 	var gameId;
+	var clickedPieceSquare;
+	var clickedPieceSquareContents;
+	var moveToSquareAndContents;
+	var contents;
 
 	$.ajax({
 	    type: "GET",
@@ -34,49 +38,57 @@ $(document).on('ready', function () {
 				for (var i=1; i<9; i++) {
 					for (var j=1; j<9; j++) {				
 
+						if (item.y == i && item.x == j && item.contents == "rook") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="rook"></div>')
+							//use images maybe instead of glyphicons if I can't get glyphicons to work
+						}
+						if (item.y == i && item.x == j && item.contents == "knight") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="knight"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "bishop") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="bishop"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "queen") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="queen"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "king") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="king"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "pawn") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="pawn"></div>')
+						}
+
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
 								console.log(postingFlag);
 								postingFlag = false;
+								console.log($(this));
 								if ( $(this).children().length > 0 ) {
+									clickedPieceSquare = {x: j, 
+										y: i
+									}
+									contents = $(this).find('[data-title]').data('title');
 									movingFlag = true;
-									moveToSquare (); 	
+									moveToSquare (response); 	
 								}
 							}
 						})
-						if (item.y == i && item.x == j && item.contents == "rook") {
-							$('.row' + i.toString() + '.column' + j.toString()).append("<div class='glyphicon glyphicon-tower'></div>")
-							//use images maybe instead of glyphicons if I can't get glyphicons to work
-						}
-						if (item.y == i && item.x == j && item.contents == "knight") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane"></div>')
-						}
-						if (item.y == i && item.x == j && item.contents == "bishop") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen"></div>')
-						}
-						if (item.y == i && item.x == j && item.contents == "queen") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet"></div>')
-						}
-						if (item.y == i && item.x == j && item.contents == "king") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe"></div>')
-						}
-						if (item.y == i && item.x == j && item.contents == "pawn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf"></div>')
-						}
 					}
 				}
 			}
 		})
 	}
 
-	function moveToSquarePartTwo () {
+	function moveToSquarePartTwo (response) {
+	
 		if (movingFlag == true) {
 
-			var updateSquaresData = {
-
-			}
+			// var updateSquaresData = {
+				//pass this in with the same updateGamesData hash
+			// }
+			gameId = response.gmId;
 			var updateGamesData = {
-				id: 2, //change to whichever game user is currently on
+				id: gameId,
 				finishedStatus: false
 			}
 			var updateTurnsData = {
@@ -95,10 +107,18 @@ $(document).on('ready', function () {
 		}
 	}
 
-	function moveToSquare () {
-		for (var i=1; i<9; i++) {
-			for (var j=1; j<9; j++) {				
-				$('.row' + i.toString() + '.column' + j.toString()).on('click', moveToSquarePartTwo);
+	function moveToSquare (response) {
+		for (var i=1; i<9; i++) { // this is every div on my board right now.  I could change this to just the container div
+								  // I tried that actually and didnt work right anymore.  idk why
+			for (var j=1; j<9; j++) {					
+				$('.row' + i.toString() + '.column' + j.toString()).on('click', function(){
+					moveToSquareAndContents = {
+						x: j,
+						y: i,
+						contents: contents
+					}
+					moveToSquarePartTwo(response)
+				});
 			}
 		}
 	}
@@ -117,7 +137,6 @@ $(document).on('ready', function () {
 	}
 	function onSaveSuccess (response) {
 		console.log(response);
-		appendPieces (response);
-		
+		appendPieces (response);	
 	}
 })
