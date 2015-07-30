@@ -38,26 +38,47 @@ $(document).on('ready', function () {
 				for (var i=1; i<9; i++) {
 					for (var j=1; j<9; j++) {				
 
-						if (item.y == i && item.x == j && item.contents == "rook") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="rook"></div>')
+						if (item.y == i && item.x == j && item.contents == "br") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="br"></div>')
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
-						if (item.y == i && item.x == j && item.contents == "knight") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="knight"></div>')
+						if (item.y == i && item.x == j && item.contents == "bn") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="bn"></div>')
 						}
-						if (item.y == i && item.x == j && item.contents == "bishop") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="bishop"></div>')
+						if (item.y == i && item.x == j && item.contents == "bb") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="bb"></div>')
 						}
-						if (item.y == i && item.x == j && item.contents == "queen") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="queen"></div>')
+						if (item.y == i && item.x == j && item.contents == "bq") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="bq"></div>')
 						}
-						if (item.y == i && item.x == j && item.contents == "king") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="king"></div>')
+						if (item.y == i && item.x == j && item.contents == "bk") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="bk"></div>')
 						}
-						if (item.y == i && item.x == j && item.contents == "pawn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="pawn"></div>')
+						if (item.y == i && item.x == j && item.contents == "bp") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="bp"></div>')
 						}
 
+
+
+						if (item.y == i && item.x == j && item.contents == "wr") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="wr"></div>')
+							//use images maybe instead of glyphicons if I can't get glyphicons to work
+						}
+						if (item.y == i && item.x == j && item.contents == "wn") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="wn"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "wb") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="wb"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "wq") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="wq"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "wk") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="wk"></div>')
+						}
+						if (item.y == i && item.x == j && item.contents == "wp") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="wp"></div>')
+						}
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
 								console.log(postingFlag);
@@ -82,7 +103,6 @@ $(document).on('ready', function () {
 	function moveToSquarePartTwo (response) {
 	
 		if (movingFlag == true) {
-
 			// var updateSquaresData = {
 				//pass this in with the same updateGamesData hash
 			// }
