@@ -1,7 +1,7 @@
 class SquaresController < ApplicationController
 
 	def get_layout
-		gm = Game.find_by(id: 2)
+		gm = Game.first#find_by(id: 2)
 		gmId = gm.id
 		spaces = gm.squares.all
 		# do something in regards to getting the squares for whichever game last had a move made on it aka whichever

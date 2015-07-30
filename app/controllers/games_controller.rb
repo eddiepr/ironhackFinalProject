@@ -32,17 +32,25 @@ class GamesController < ApplicationController
 	end
 
 	def update
+		# game = Game.find(params[:id])
+		data = params[:updateGamesData]
+		puts data
+		gameId = data[:id]
+		game = Game.find_by(id: gameId)
+		game.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
 
-		game = Game.find(params[:id])
-		game.update_attribute(:finished, params[:data])
+		# add something for on save failure I guess here
+		move = params[:moveToSquareAndContents]
 
-		gm = Game.first
-		spaces = gm.squares.all 
-		gmId = gm.id
-		render json: {
-			:spaces => spaces, 
-			:gmId => gmId
-		}
+		render json: { :message => "Update successful" }
+
+		# gm = Game.first
+		# spaces = gm.squares.all 
+		# gmId = gm.id
+		# render json: {
+		# 	:spaces => spaces, 
+		# 	:gmId => gmId
+		# }
 		# render nothing: true
 		# @prj = Project.find(params[:project_id])
 		# @entr = @prj.entries.find(params[:id]) 

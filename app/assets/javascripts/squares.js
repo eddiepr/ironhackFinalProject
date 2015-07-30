@@ -11,15 +11,19 @@ $(document).on('ready', function () {
 	var clickedPieceSquareContents;
 	var moveToSquareAndContents;
 	var contents;
+	var data;
 
-	$.ajax({
-	    type: "GET",
-	    url: "/squares",
-	    data: '',
-	    success: onSaveSuccess,
-	    error: onSaveFailure,
-	    dataType: "json"
-	});
+	function nextLayout () {
+		$.ajax({
+		    type: "GET",
+		    url: "/squares",
+		    data: '',
+		    success: onSaveSuccess,
+		    error: onSaveFailure,
+		    dataType: "json"
+		});
+	}
+	nextLayout ();
 
 	function appendPieces (response) {
 		var number = 0;
@@ -29,7 +33,7 @@ $(document).on('ready', function () {
 				$('.row' + i.toString() + '.column' + j.toString()).empty();
 			}
 		}
-
+		console.log(response);
 		response.spaces.forEach(function (item) {
 
 			number = number + 1;  //the json object is sending me twice as many items as are in the database for some reason
@@ -103,9 +107,6 @@ $(document).on('ready', function () {
 	function moveToSquarePartTwo (response) {
 	
 		if (movingFlag == true) {
-			// var updateSquaresData = {
-				//pass this in with the same updateGamesData hash
-			// }
 			gameId = response.gmId;
 			var updateGamesData = {
 				id: gameId,
@@ -114,11 +115,14 @@ $(document).on('ready', function () {
 			var updateTurnsData = {
 
 			}
-
+			data = {
+		    	updateGamesData: updateGamesData,
+		    	moveToSquareAndContents: moveToSquareAndContents
+		    }
 			$.ajax({
 			    type: "PATCH",
 			    url: "/move",
-			    data: updateGamesData,  //this is where I need to post the updated contents in games.id#.squares table.
+			    data: data,  //this is where I need to post the updated contents in games.id#.squares table.
 		    					// Also need to have a users table and update how many moves they made for that side in a 
 		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
 			    success: onSaveSuccessPatch,
@@ -132,6 +136,7 @@ $(document).on('ready', function () {
 								  // I tried that actually and didnt work right anymore.  idk why
 			for (var j=1; j<9; j++) {					
 				$('.row' + i.toString() + '.column' + j.toString()).on('click', function(){
+					console.log(contents);
 					moveToSquareAndContents = {
 						x: j,
 						y: i,
@@ -143,12 +148,22 @@ $(document).on('ready', function () {
 		}
 	}
 
+	// function onSaveFailurePatchLayout () {
+
+	// }
+
+	// function onSaveSuccessPatchLayout () {
+
+	// }
+
 	function onSaveFailurePatch (err) {
 		console.log("error Posting move to database");
 	}
 
 	function onSaveSuccessPatch (response) {
-		appendPieces(response);
+		console.log(response);
+		nextLayout ();
+		// appendPieces(response);
 	}
 
 	function onSaveFailure (err) {
