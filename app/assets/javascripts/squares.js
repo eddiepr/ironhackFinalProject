@@ -120,9 +120,12 @@ $(document).on('ready', function () {
 
 			}
 			data = {
+				clickedPieceSquare: clickedPieceSquare,
 		    	updateGamesData: updateGamesData,
 		    	moveToSquareAndContents: moveToSquareAndContents
 		    }
+		    console.log(moveToSquareAndContents)
+		    console.log(clickedPieceSquare);
 			$.ajax({
 			    type: "PATCH",
 			    url: "/move",
