@@ -1,3 +1,7 @@
 <h1> Zoom chess </h1>
 
-<a href="/game"> Join Game </a>
+<% if user_signed_in? %>
+	<a href="/game"> Join Game </a>
+<% else %>
+	<h2> not logged in </h2>
+<% end %>
