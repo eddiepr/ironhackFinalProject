@@ -126,7 +126,6 @@ $(document).on('ready', function () {
 			gameId = response.gmId;
 			var updateGamesData = {
 				id: gameId,
-				active: false,
 				finishedStatus: false
 			}
 			var updateTurnsData = {
@@ -139,15 +138,15 @@ $(document).on('ready', function () {
 		    }
 		    console.log(moveToSquareAndContents)
 		    console.log(clickedPieceSquare);
-			$.ajax({
-			    type: "PATCH",
-			    url: "/move",
-			    data: data,  //this is where I need to post the updated contents in games.id#.squares table.
-		    					// Also need to have a users table and update how many moves they made for that side in a 
-		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
-			    success: onSaveSuccessPatch,
-			    error: onSaveFailurePatch,
-			});
+			// $.ajax({
+			//     type: "PATCH",
+			//     url: "/move",
+			//     data: data,  //this is where I need to post the updated contents in games.id#.squares table.
+		 //    					// Also need to have a users table and update how many moves they made for that side in a 
+		 //    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+			//     success: onSaveSuccessPatch,
+			//     error: onSaveFailurePatch,
+			// });
 		}
 	}
 
