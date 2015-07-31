@@ -15,7 +15,6 @@ $(document).on('ready', function () {
 	var active;
 
 	function nextLayout () {
-		active = {active: true};
 		piece = "reset";
 		postingFlag = true;
 		movingFlag = true;
@@ -31,7 +30,7 @@ $(document).on('ready', function () {
 		$.ajax({
 		    type: "PATCH",
 		    url: "/squares",
-		    data: active,
+		    data: data,
 		    success: onSaveSuccess,
 		    error: onSaveFailure,
 		    dataType: "json"
