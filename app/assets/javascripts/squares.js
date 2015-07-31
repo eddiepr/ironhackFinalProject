@@ -14,6 +14,18 @@ $(document).on('ready', function () {
 	var data;
 
 	function nextLayout () {
+		piece = "reset";
+		postingFlag = true;
+		movingFlag = true;
+		gameId = "reset";
+		clickedPieceSquare = "reset";
+		clickedPieceSquareContents = "reset";
+		moveToSquareAndContents = "reset";
+		contents = "reset";
+		data = "reset";
+		console.log("did this thing");
+
+
 		$.ajax({
 		    type: "GET",
 		    url: "/squares",

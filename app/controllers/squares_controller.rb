@@ -1,10 +1,25 @@
 class SquaresController < ApplicationController
 
 	def get_layout
-		gm = Game.first#find_by(id: 2)
+		puts ("1")
+		# gm = Game.first#find_by(id: 2)
+		gm = Game.where(finished: false)
+		puts ("2")
+		gm = gm.where(active: false)
+		puts ("3")
+		gm = gm.order(created_at: :asc)
+		puts ("4")
+		gm = gm.limit(1)
+		puts "5"
+		gm = gm[0]
+		puts "6"
+		puts gm
+		puts "7"
 		#gm = Game.where(id is the lowest, finished == false, active == false)
 		gmId = gm.id
 		spaces = gm.squares.all
+		puts spaces
+		puts "8"
 		# do something in regards to getting the squares for whichever game last had a move made on it aka whichever
 		# game last did an ajax post
 		# game = Game.first
