@@ -12,8 +12,10 @@ $(document).on('ready', function () {
 	var moveToSquareAndContents;
 	var contents;
 	var data;
+	var active;
 
 	function nextLayout () {
+		active = {active: true};
 		piece = "reset";
 		postingFlag = true;
 		movingFlag = true;
@@ -27,9 +29,9 @@ $(document).on('ready', function () {
 
 
 		$.ajax({
-		    type: "GET",
+		    type: "PATCH",
 		    url: "/squares",
-		    data: '',
+		    data: active,
 		    success: onSaveSuccess,
 		    error: onSaveFailure,
 		    dataType: "json"
@@ -39,7 +41,6 @@ $(document).on('ready', function () {
 
 	function appendPieces (response) {
 		var number = 0;
-
 		for (var i=1; i<9; i++) {
 			for (var j=1; j<9; j++) {
 				$('.row' + i.toString() + '.column' + j.toString()).empty();
@@ -126,6 +127,7 @@ $(document).on('ready', function () {
 			gameId = response.gmId;
 			var updateGamesData = {
 				id: gameId,
+				active: false,
 				finishedStatus: false
 			}
 			var updateTurnsData = {

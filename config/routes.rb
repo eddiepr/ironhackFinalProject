@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   # get "/json" => "squares#get_json"
 
 
-  get "/new_board" => "squares#get_board"
+  # get "/new_board" => "squares#get_board"
 
-  get "/squares" => "squares#get_layout"
+  patch "/squares" => "squares#get_layout"
   get "/games" => "games#get_games_data"
 
   patch "/move" => "games#update"  

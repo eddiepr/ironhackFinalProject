@@ -1,18 +1,15 @@
 class SquaresController < ApplicationController
 
 	def get_layout
-		puts ("1")
+
+		
 		# gm = Game.first#find_by(id: 2)
-		gm = Game.where(finished: false)
-		puts ("2")
-		gm = gm.where(active: false)
-		puts ("3")
-		gm = gm.order(created_at: :asc)
-		puts ("4")
-		gm = gm.limit(1)
-		puts "5"
+		gm = Game
+			.where(finished: false)
+			.where(active: false)
+			.order(created_at: :asc)
+			.limit(1)
 		gm = gm[0]
-		puts "6"
 		puts gm
 		puts "7"
 		#gm = Game.where(id is the lowest, finished == false, active == false)
