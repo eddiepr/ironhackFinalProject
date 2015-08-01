@@ -12,7 +12,6 @@ $(document).on('ready', function () {
 	var moveToSquareAndContents;
 	var contents;
 	var data;
-	var active;
 
 	function nextLayout () {
 		piece = "reset";
@@ -28,9 +27,9 @@ $(document).on('ready', function () {
 
 
 		$.ajax({
-		    type: "PATCH",
+		    type: "GET",
 		    url: "/squares",
-		    data: data,
+		    data: '',
 		    success: onSaveSuccess,
 		    error: onSaveFailure,
 		    dataType: "json"
@@ -40,6 +39,7 @@ $(document).on('ready', function () {
 
 	function appendPieces (response) {
 		var number = 0;
+
 		for (var i=1; i<9; i++) {
 			for (var j=1; j<9; j++) {
 				$('.row' + i.toString() + '.column' + j.toString()).empty();
@@ -138,15 +138,15 @@ $(document).on('ready', function () {
 		    }
 		    console.log(moveToSquareAndContents)
 		    console.log(clickedPieceSquare);
-			// $.ajax({
-			//     type: "PATCH",
-			//     url: "/move",
-			//     data: data,  //this is where I need to post the updated contents in games.id#.squares table.
-		 //    					// Also need to have a users table and update how many moves they made for that side in a 
-		 //    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
-			//     success: onSaveSuccessPatch,
-			//     error: onSaveFailurePatch,
-			// });
+			$.ajax({
+			    type: "PATCH",
+			    url: "/move",
+			    data: data,  //this is where I need to post the updated contents in games.id#.squares table.
+		    					// Also need to have a users table and update how many moves they made for that side in a 
+		    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+			    success: onSaveSuccessPatch,
+			    error: onSaveFailurePatch,
+			});
 		}
 	}
 

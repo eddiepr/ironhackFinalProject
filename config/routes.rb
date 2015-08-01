@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # get "/new_board" => "squares#get_board"
 
-  patch "/squares" => "squares#get_layout"
+  get "/squares" => "squares#get_layout"
   get "/games" => "games#get_games_data"
 
   patch "/move" => "games#update"  
