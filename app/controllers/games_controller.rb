@@ -78,4 +78,7 @@ class GamesController < ApplicationController
 		# 	render ("edit")
 		# end
 	end
+	def template
+		render "startbootstrap-sb-admin-2/index.html"
+	end
 end

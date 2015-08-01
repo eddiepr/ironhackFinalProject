@@ -1,7 +1,23 @@
-<h1> Zoom chess </h1>
 
-<% if user_signed_in? %>
-	<a href="/game" class="join-game-button"> Join Game </a>
-<% else %>
-	<h2> not logged in </h2>
-<% end %>
+<body class="index-body">
+	<% if user_signed_in? %>
+		<% current_user.update_attribute(:active, false) %>
+	<% end %>
+	<div class="cont">
+		<h1 class="index-h1"> Zoom chess </h1>
+		<% if user_signed_in? %>
+			<div class="cont2">
+				<a href="/game" class="join-game-button"> Join Game </a>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="zoom">
+			</div>
+		<% else %>
+			<h2> not logged in </h2>
+		<% end %>
+	</div>
+</body>

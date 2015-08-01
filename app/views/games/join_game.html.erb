@@ -1,38 +1,43 @@
-<% if user_signed_in? %>
-	<h1> Zoom Chess </h1>
-	<div class="container board">
-
-		<% for j in 1..8 %>
-			<% if (j%2 != 0) %>
-				<div class="row">
-					<% for i in 1..8 %>
-						<% if (i%2 == 0) %>
-							<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
-							</div>
-						<% else %>
-							<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
-							</div>
-						<% end %>
+<% if user_signed_in? %>	
+		<body class="join_game-body">
+			<% current_user.update_attribute(:active, true) %>
+			<% user_count = User.count(:conditions => "active > true") %>
+			<% puts "craig" %>
+			<% puts user_count %>
+			<h1> Zoom Chess </h1>
+			<div class="container board">
+				<% for j in 1..8 %>
+					<% if (j%2 != 0) %>
+						<div class="row">
+							<% for i in 1..8 %>
+								<% if (i%2 == 0) %>
+									<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
+									</div>
+								<% else %>
+									<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="row">
+							<% for i in 1..8  %>
+								<% if (i%2 == 0) %>
+									<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-even " data-row="<%= j + 1%>" data-column="<%= i %>">
+									</div>
+								<% else %>
+									<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-odd " data-row="<%= j + 1%>" data-column="<%= i %>">
+									</div>
+								<% end %>
+							<% end %>
+						</div>
 					<% end %>
-				</div>
-				<div class="row">
-					<% for i in 1..8  %>
-						<% if (i%2 == 0) %>
-							<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-even " data-row="<%= j + 1%>" data-column="<%= i %>">
-							</div>
-						<% else %>
-							<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-odd " data-row="<%= j + 1%>" data-column="<%= i %>">
-							</div>
-						<% end %>
-					<% end %>
-				</div>
-			<% end %>
-		<% end %>
-	<!-- render("partials/boardrow") %> -->
-	<!-- render("partials/boardrowEven") %> -->
-			
-	</div>
-	<a href="/">Leave Game </a>
+				<% end %>
+			<!-- render("partials/boardrow") %> -->
+			<!-- render("partials/boardrowEven") %> -->
+					
+			</div>
+			<a href="/">Leave Game </a>
+		</body>
 <% else %>
 	<h4>You must be logged in to join the game</h4>
 <% end %>
