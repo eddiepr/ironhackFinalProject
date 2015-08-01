@@ -60,7 +60,7 @@
 		moveToSquareAndContents = "reset";
 		contents = "reset";
 		data = "reset";
-		console.log("did this thing");
+		// console.log("did this thing");
 
 		$.ajax({
 		    type: "GET",
@@ -82,7 +82,7 @@
 				$('.row' + i.toString() + '.column' + j.toString()).empty();
 			}
 		}
-		console.log(response);
+		// console.log(response);
 		response.spaces.forEach(function (item) {
 
 			number = number + 1;  //the json object is sending me twice as many items as are in the database for some reason
@@ -92,60 +92,61 @@
 					for (var j=1; j<9; j++) {				
 
 						if (item.y == i && item.x == j && item.contents == "br") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="br"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="br">&#9820</div>')
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "bn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="bn"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bn">&#9822</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bb") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="bb"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bb">&#9821</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bq") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="bq"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bq">&#9819</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bk") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="bk"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bk">&#9818</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bp") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="bp"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bp">&#9823</div>')
 						}
 
 
 
 						if (item.y == i && item.x == j && item.contents == "wr") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-tower" data-title="wr"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wr">&#9814</div>')
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "wn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-plane" data-title="wn"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wn">&#9816</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wb") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-fullscreen" data-title="wb"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wb">&#9815</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wq") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-magnet" data-title="wq"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wq">&#9813</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wk") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-globe king" data-title="wk"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wk">&#9812</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wp") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="glyphicon glyphicon-leaf pawn" data-title="wp"></div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wp">&#9817</div>')
 						}
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
-								console.log(postingFlag);
+								// console.log(postingFlag);
 								postingFlag = false;
-								console.log($(this));
+								// console.log($(this));
 								if ( $(this).children().length > 0 ) {
-									console.log(i);
-									console.log($(this).attr('data-column'));
-									console.log($(this).attr('data-row'));
+									console.log(this);
+									// console.log(i);
+									// console.log($(this).attr('data-column'));
+									// console.log($(this).attr('data-row'));
 									clickedPieceSquare = {x: $(this).attr('data-column'), 
 										y: $(this).attr('data-row')
 									}
 									contents = $(this).find('[data-title]').data('title');
-									console.log(contents);
+									// console.log(contents);
 									movingFlag = true;
 									moveToSquare (response); 	
 								}
@@ -173,8 +174,8 @@
 		    	updateGamesData: updateGamesData,
 		    	moveToSquareAndContents: moveToSquareAndContents
 		    }
-		    console.log(moveToSquareAndContents)
-		    console.log(clickedPieceSquare);
+		    // console.log(moveToSquareAndContents)
+		    // console.log(clickedPieceSquare);
 			$.ajax({
 			    type: "PATCH",
 			    url: "/move",
@@ -192,7 +193,7 @@
 								  // I tried that actually and didnt work right anymore.  idk why
 			for (var j=1; j<9; j++) {					
 				$('.row' + i.toString() + '.column' + j.toString()).on('click', function(){
-					console.log(contents);
+					// console.log(contents);
 					moveToSquareAndContents = {
 						x: $(this).attr('data-column'),
 						y: $(this).attr('data-row'),
@@ -217,7 +218,8 @@
 	}
 
 	function onSaveSuccessPatch (response) {
-		console.log(response);
+		console.log("ran a patch");
+		// console.log(response);
 		nextLayout ();
 		// appendPieces(response);
 	}
@@ -227,7 +229,8 @@
 		console.log("error getting chess pieces layout");
 	}
 	function onSaveSuccess (response) {
-		console.log(response);
+		console.log("ran a get");
+		// console.log(response);
 		appendPieces (response);	
 	}
 })

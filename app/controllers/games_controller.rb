@@ -46,6 +46,8 @@ class GamesController < ApplicationController
 		squares = game.squares.all
 		move = params[:moveToSquareAndContents]
 		from = params[:clickedPieceSquare]
+		puts "heheheheheheheheh"
+		puts from
 		fromSquare_array = squares.where("x = ? AND y = ?", from[:x], from[:y])
 		square_array = squares.where("x = ? AND y = ?", move[:x], move[:y])
 		from_square = fromSquare_array[0]

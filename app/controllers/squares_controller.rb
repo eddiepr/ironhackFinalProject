@@ -6,9 +6,9 @@ class SquaresController < ApplicationController
 			.where(active: false)
 			.order(created_at: :asc)
 			.limit(1)
-			puts "djhgkfdjgf"
-			p gm
-			puts "jsdkfjdkfg"
+			# puts "djhgkfdjgf"
+			# p gm
+			# puts "jsdkfjdkfg"
 		gm = gm[0]
 		#gm = Game.where(id is the lowest, finished == false, active == false)
 		gmId = gm.id
