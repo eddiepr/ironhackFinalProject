@@ -2,6 +2,13 @@
 		<body class="join_game-body">
 			<% current_user.update_attribute(:active, true) %>
 			<% user_count = User.count(:conditions => "active > true") %>
+			<div class="display-user-count">
+				Number of Players when you joined the game: <%= user_count %>
+			</div>
+			<% game_count = Game.count(:conditions => "finished > false") %>
+			<% if (user_count > (game_count/2)) %>
+				<% Game.create(:turn => "white", :finished => false, :winner => "none", :active => false) %>
+			<% end %>
 			<% puts "craig" %>
 			<% puts user_count %>
 			<h1> Zoom Chess </h1>
