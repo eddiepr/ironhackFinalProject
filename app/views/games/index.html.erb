@@ -1,22 +1,107 @@
 
 <body class="index-body">
-	<% if user_signed_in? %>
-	<% end %>
+
+	<div class="modal fade js-modal">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+
+				<div class="modal-header">
+				<!-- Close button -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				    	<span>&times;</span>
+					</button>
+					<p>
+						Zoom chess is played with a pool of players.  Once you make a move, 
+						it is your turn to move another board.  Whenever a user gets checkmate,
+						we check how many moves you made for the winning or losing side on that board,
+						and give you points or take away points based on that.  You can jump into the game
+						anytime and keep playing moves on different boards until you are ready to quit.
+					</p>
+				</div>
+
+				<div class="modal-body">
+				</div>
+
+	    	</div><!-- /.modal-content -->
+	  	</div><!-- /.modal-dialog -->
+	</div>
+
 	<div class="cont">
-		<h1 class="index-h1"> Zoom chess </h1>
-		<% if user_signed_in? %>
-			<div class="cont2">
+		<div class="row">
+			<div class="col-sm-4">
+			</div>
+			<div class="col-sm-4">
+				<h1 class="index-h1"> Zoom chess </h1>
+			</div>
+				<% if user_signed_in? %>
+			<div class ="col-sm-4 stats">
+				<div class="row">
+					<a class="description">
+						description of zoom chess
+					</a>
+				</div>
+				<div class="row">
+					Your Stats
+				</div>
+				<div class="row">
+					Player Rating:
+				</div>
+				<div class="row">
+					Number of moves you have made:
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+			</div>
+			<div class="col-sm-4">
 				<a href="/game" class="join-game-button"> Join Game </a>
 			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<div class="zoom">
-			</div>
-		<% else %>
-			<h2> not logged in </h2>
-		<% end %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="zoom">
 	</div>
+	<br>
+	<br>
+	<br>
+	</div>
+	<div class="container">
+		<div class="row">
+			Chat:
+			<form>
+				<input class="col-sm-10 chat-input"></input>
+			</form>
+		</div>
+	</div>
+		<% else %>
+			<div class="cont">
+				<div class="row">
+					
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-5">
+					<div class="col-sm-8">
+						<h2> not logged in </h2>
+					</div>
+				</div>
+			</div>
+		<% end %>
 </body>
+<script>
+
+	function onModal (event) {
+		event.preventDefault();
+		$('.js-modal').modal();
+	}
+	$('.description').on('click', onModal);
+
+
+
+
+</script>

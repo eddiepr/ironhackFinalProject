@@ -32,14 +32,22 @@ class GamesController < ApplicationController
 	end
 
 	def update
+
+
 		
 		# game = Game.find(params[:id])
 		data = params[:updateGamesData]
 		puts data
 		gameId = data[:id]
-		game = Game.find_by(id: gameId)
+		@game = Game.find_by(id: gameId)
 		game.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
 		game.update_attribute(:active, false)
+		game_turn = game.turn
+		if (game_turn == "white")
+			game.update_attribute(:turn, "black")
+		else
+			game.update_attribute(:turn, "white")
+		end
 
 
 		# add something for on save failure I guess here
