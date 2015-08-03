@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "/games" => "games#get_games_data"
 
   patch "/move" => "games#update"  
-  get "/move" => "squares#get_layout"
+  get "/move" => "squares#join_game"
   patch "/active" => "users#update_active"
 
 

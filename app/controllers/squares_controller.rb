@@ -2,14 +2,7 @@ class SquaresController < ApplicationController
 
 	def get_layout
 		# gm = Game.first#find_by(id: 2)
-		gm = Game.where(finished: false)
-			.where(active: false)
-			.order(created_at: :asc)
-			.limit(1)
-			# puts "djhgkfdjgf"
-			# p gm
-			# puts "jsdkfjdkfg"
-		gm = gm[0]
+		gm = Game.get_random_game
 		#gm = Game.where(id is the lowest, finished == false, active == false)
 		gmId = gm.id
 		spaces = gm.squares.all

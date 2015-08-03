@@ -7,12 +7,16 @@ class GamesController < ApplicationController
 		@firstgame = Game.first
 	end
 	def join_game
+		@gameo = Game.get_random_game
+		#gm = Game.where(id is the lowest, finished == false, active == false)
+		@gmId = @gameo.id # this can screw up and not be the same game as is getting called in the ajax if 
+							#2 users make moves at close enough to teh same time
+							#but reloading page and using ajax back to back is making me have 2 methods
+							#called back to back that should reference the same game id. because I can't
+							#do render json and render "join_game" in the same method
 		render "join_game"
 	end
 
-	def get_board
-		render "join_game"  #render the page with updated board
-	end
 
 	def create_game
 		# I dont't remember what this method was supposed to be for

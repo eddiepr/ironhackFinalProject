@@ -54,6 +54,15 @@
 							<% end %>
 						<% end %>
 					</div>
+					<div class="col-sm-2">
+						<br>
+						Your Stats
+						<br>
+						Player Rating:
+						<br>
+						<br>
+						Number of moves you have made:
+					</div>
 				</div>
 			<!-- render("partials/boardrow") %> -->
 			<!-- render("partials/boardrowEven") %> -->
@@ -198,7 +207,6 @@ $(document).on('ready', function () {
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "bn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bn">&#9822</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bb") {
 							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bb">&#9821</div>')
@@ -237,7 +245,7 @@ $(document).on('ready', function () {
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
 								// console.log(postingFlag);
-								postingFlag = false;
+								postingFlag = false; //what is this supposed to do 
 								// console.log($(this));
 								if ( $(this).children().length > 0 ) {
 									console.log(this);
@@ -294,7 +302,7 @@ $(document).on('ready', function () {
 		for (var i=1; i<9; i++) { // this is every div on my board right now.  I could change this to just the container div
 								  // I tried that actually and didnt work right anymore.  idk why
 			for (var j=1; j<9; j++) {					
-				$('.row' + i.toString() + '.column' + j.toString()).on('click', function(){
+				$('.row' + i.toString() + '.column' + j.toString()).one('click', function(){
 					// console.log(contents);
 					moveToSquareAndContents = {
 						x: $(this).attr('data-column'),
