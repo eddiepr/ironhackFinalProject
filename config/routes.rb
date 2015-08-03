@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   patch "/move" => "games#update"  
   get "/move" => "squares#get_layout"
+  patch "/active" => "users#update_active"
 
 
 

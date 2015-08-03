@@ -1,15 +1,15 @@
 <% if user_signed_in? %>	
 		<body class="join_game-body">
 			<% current_user.update_attribute(:active, true) %>
-			<% user_count = User.count(:conditions => "active > true") %>
+			<% user_count = User.count(:conditions => "active == true") %>
 			<div class="display-user-count">
 				Number of Players when you joined the game: <%= user_count %>
 			</div>
 			<% game_count = Game.count(:conditions => "finished > false") %>
+			<%= game_count %>
 			<% if (user_count > (game_count/2)) %>
-				<% Game.create(:turn => "white", :finished => false, :winner => "none", :active => false) %>
+				<% Square.make %>
 			<% end %>
-			<% puts "craig" %>
 			<% puts user_count %>
 			<h1> Zoom Chess </h1>
 			<div class="container board">
@@ -50,22 +50,55 @@
 <% end %>
 
 <script>
-	$(document).on('ready', function () {
+$(document).on('ready', function () {
+
 
 	var piece;
 	var postingFlag = true;
-	var movingFlag = true;
+	var movingFlag = false;
 	var gameId;
 	var clickedPieceSquare;
 	var clickedPieceSquareContents;
 	var moveToSquareAndContents;
 	var contents;
 	var data;
+	var activeData;
+
+
+
+
+	// activeData = {
+	// 			active: false,
+	// 		}
+	window.onbeforeunload = updateUserActive;
+	  function updateUserActive() {
+	   	$.ajax({
+		    type: "PATCH",
+		    url: "/active",
+		    data: '',  //this is where I need to post the updated contents in games.id#.squares table.
+	    					// Also need to have a users table and update how many moves they made for that side in a 
+	    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+		    success: onSaveSuccessActivePatch,
+		    error: onSaveFailureActivePatch,
+		}); 
+	  }
+
+	  function onSaveSuccessActivePatch () {
+	  	console.log("updateActive success")
+	  }
+	  function onSaveFailureActivePatch (err) {
+	  	console.log("onSaveFailureActivePatch error:")
+  		console.log(err);
+	  }
+ 		
+
+
+
 
 	function nextLayout () {
 		piece = "reset";
 		postingFlag = true;
-		movingFlag = true;
+		movingFlag = false;
 		gameId = "reset";
 		clickedPieceSquare = "reset";
 		clickedPieceSquareContents = "reset";
@@ -232,7 +265,7 @@
 	function onSaveSuccessPatch (response) {
 		console.log("ran a patch");
 		// console.log(response);
-		nextLayout ();
+		location.reload();
 		// appendPieces(response);
 	}
 
