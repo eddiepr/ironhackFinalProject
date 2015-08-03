@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+	attr_accessor :gameo
 	def index
 		@game = Game.all
 		render "index"
@@ -39,19 +40,19 @@ class GamesController < ApplicationController
 		data = params[:updateGamesData]
 		puts data
 		gameId = data[:id]
-		@game = Game.find_by(id: gameId)
-		game.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
-		game.update_attribute(:active, false)
-		game_turn = game.turn
+		@gameo = Game.find_by(id: gameId)
+		@gameo.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
+		@gameo.update_attribute(:active, false)
+		game_turn = @gameo.turn
 		if (game_turn == "white")
-			game.update_attribute(:turn, "black")
+			@gameo.update_attribute(:turn, "black")
 		else
-			game.update_attribute(:turn, "white")
+			@gameo.update_attribute(:turn, "white")
 		end
 
 
 		# add something for on save failure I guess here
-		squares = game.squares.all
+		squares = @gameo.squares.all
 		move = params[:moveToSquareAndContents]
 		from = params[:clickedPieceSquare]
 		fromSquare_array = squares.where("x = ? AND y = ?", from[:x], from[:y])
