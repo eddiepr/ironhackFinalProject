@@ -39,10 +39,11 @@
 					Your Stats
 				</div>
 				<div class="row">
-					Player Rating:
+					Player Rating: 0
 				</div>
+				<% turn_count = Turn.where(:user_id => current_user.id).count %>
 				<div class="row">
-					Number of moves you have made:
+					Number of moves you have made: <%= turn_count %>
 				</div>
 			</div>
 		</div>
