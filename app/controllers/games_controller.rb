@@ -48,6 +48,10 @@ class GamesController < ApplicationController
 		@gameo.update_attribute(:finished, params[:updateGamesData][:finishedStatus])
 		@gameo.update_attribute(:active, false)
 		game_turn = @gameo.turn
+
+
+		Turn.create(:user_id => current_user.id, :game_id => @gameo.id, :color => @gameo.turn)
+		
 		if (game_turn == "white")
 			@gameo.update_attribute(:turn, "black")
 		else
@@ -65,6 +69,8 @@ class GamesController < ApplicationController
 		square = square_array[0]
 		from_square.update_attribute(:contents, "nil")
 		square.update_attribute(:contents, move[:contents])
+
+		
 
 		render json: { :message => "Update successful" }
 

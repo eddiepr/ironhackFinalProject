@@ -18,10 +18,13 @@
    src: url(asset_path('glyphicons-halflings-regular.eot'));
    src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'), url(asset_path('glyphicons-halflings-regular.woff')) format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'), url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
  }
+ .index-body {
+ 	background-color: #F0FFFF;
+ }
 // body {
 // 	margin: 0;
-//  background-image: url(chessboard.jpg);
-//  background-size: 1000px 1000px;
+//  background-image: url(black.jpg);
+//  background-size: 100%;
 //     background-repeat: no-repeat;
 //  display: compact;
 //  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -79,8 +82,17 @@
 	border: 2px solid black;
 }
 
+.main-description {
+	font-size: 20px;
+}
 
+.join_game-body {
+	background-color: #FFF8DC;
+}
 
+.description {
+	padding-left: 18px
+}
 
 
 
