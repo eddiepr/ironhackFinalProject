@@ -1,8 +1,34 @@
 <% if user_signed_in? %>	
 		<body class="join_game-body">
+
+
+			<div class="modal fade js-modal">
+		  		<div class="modal-dialog">
+		    		<div class="modal-content">
+
+						<div class="modal-header">
+						<!-- Close button -->
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						    	<span>&times;</span>
+							</button>
+							<p>
+								Your player rating is based on the amount of moves that you make for the color that
+								wins the game for a particular board vs the amount of moves that you make for the
+								losing color of a particular board
+							</p>
+						</div>
+
+						<div class="modal-body">
+						</div>
+
+			    	</div><!-- /.modal-content -->
+			  	</div><!-- /.modal-dialog -->
+			</div>
+
+
 			<% current_user.update_attribute(:active, true) %>
-			<% user_count = User.count(:conditions => "active == true") %>
-			<% game_count = Game.count(:conditions => "finished > false") %>
+			<% user_count = User.where(:active => true).count %>
+			<% game_count = Game.where(:finished => false).count %>
 			<% puts game_count %>
 			<% if (user_count > (game_count/2)) %>
 				<% Square.make %>
@@ -12,6 +38,10 @@
 					<div class="col-sm-3">
 						<div class="display-user-count">
 							Current Active Users: <%= user_count %>
+						</div>
+						You have 60 seconds to make a move
+						<div id="timer">
+
 						</div>
 					</div>
 					<div class="col-sm-9">
@@ -58,7 +88,7 @@
 						<br>
 						Your Stats
 						<br>
-						Player Rating:
+						<a class="player-rating">Player Rating:</a>
 						<br>
 						<br>
 						Number of moves you have made:
@@ -118,6 +148,10 @@
 <script>
 $(document).on('ready', function () {
 
+	$('#timer').timer({
+	    duration: 60,
+	    callback: whatEver //Specify start time in seconds
+	});
 
 	var piece;
 	var postingFlag = true;
@@ -129,6 +163,16 @@ $(document).on('ready', function () {
 	var contents;
 	var data;
 	var activeData;
+
+	function whatEver(){
+		console.log("Done")
+	}
+
+	function onModal (event) {
+		event.preventDefault();
+		$('.js-modal').modal();
+	}
+	$('.player-rating').on('click', onModal);
 
 
 
@@ -207,6 +251,7 @@ $(document).on('ready', function () {
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "bn") {
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bn">&#9822</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bb") {
 							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bb">&#9821</div>')
@@ -245,9 +290,10 @@ $(document).on('ready', function () {
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
 								// console.log(postingFlag);
-								postingFlag = false; //what is this supposed to do 
+								 //what is this supposed to do 
 								// console.log($(this));
 								if ( $(this).children().length > 0 ) {
+									postingFlag = false;
 									console.log(this);
 									// console.log(i);
 									// console.log($(this).attr('data-column'));
