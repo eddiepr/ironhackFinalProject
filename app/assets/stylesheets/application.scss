@@ -37,6 +37,27 @@
  //    padding-left: 40%;
  // }
 
+.flip-horizontal, .x-grid-cell-inner, .x-column-header-text, .x-panel-header-text {
+    -moz-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    transform: scaleY(-1);
+    -ms-filter: fliph; /*IE*/
+    filter: fliph; /*IE*/
+}
+
+.x-column-header-text, .x-panel-header-text {
+    display: inline-block;
+}
+
+
+.turn {
+	font-size: 35px;
+}
+ .board-number-display {
+ 	font-size: 25px;
+ }
+
  .join-game-button {
  	font-size: 30px;
  	padding-left: 23px;

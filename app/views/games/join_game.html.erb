@@ -45,44 +45,58 @@
 						</div>
 					</div>
 					<div class="col-sm-9">
-						<h1> Zoom Chess &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Turn: 
-							<% if @gameo != nil %>
-								<%= @gameo.turn %></h1>
-							<% else %>
-								White
-							<% end %>
+						<h1> Zoom Chess </h1>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-2">
-					</div>
-					<div class="col-sm-8">
-						<% for j in 1..8 %>
-							<% if (j%2 != 0) %>
-								<div class="row">
-									<% for i in 1..8 %>
-										<% if (i%2 == 0) %>
-											<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
-											</div>
-										<% else %>
-											<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
-											</div>
-										<% end %>
-									<% end %>
-								</div>
-								<div class="row">
-									<% for i in 1..8  %>
-										<% if (i%2 == 0) %>
-											<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-even " data-row="<%= j + 1%>" data-column="<%= i %>">
-											</div>
-										<% else %>
-											<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-odd " data-row="<%= j + 1%>" data-column="<%= i %>">
-											</div>
-										<% end %>
-									<% end %>
-								</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br> 
+						<div class="turn">Turn:
+						</div>
+							<% if @gameo != nil %>
+								<div class="turn"><%= @gameo.turn %></div>
+							<% else %>
+								Turn: White
 							<% end %>
-						<% end %>
+						<br>
+						<br>
+						<br>
+						<div class="board-number-display">
+							Board number:
+							<%= @gmId %>
+						</div>
+					</div>
+					<div class="col-sm-8 flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text">
+							<% for j in 1..8 %>
+								<% if (j%2 != 0) %>
+									<div class="row">
+										<% for i in 1..8 %>
+											<% if (i%2 == 0) %>
+												<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
+												</div>
+											<% else %>
+												<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
+												</div>
+											<% end %>
+										<% end %>
+									</div>
+									<div class="row">
+										<% for i in 1..8  %>
+											<% if (i%2 == 0) %>
+												<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-even " data-row="<%= j + 1%>" data-column="<%= i %>">
+												</div>
+											<% else %>
+												<div class="col-sm-1 column <%= 'row' + (j + 1).to_s %> <%= 'column' + i.to_s %> row-even-column-odd " data-row="<%= j + 1%>" data-column="<%= i %>">
+												</div>
+											<% end %>
+										<% end %>
+									</div>
+								<% end %>
+							<% end %>				
 					</div>
 					<div class="col-sm-2">
 						<br>
@@ -245,47 +259,47 @@ $(document).on('ready', function () {
 			if (number <= 64) { //the json object is sending me twice as many items as are in the database for some reason
 				for (var i=1; i<9; i++) {
 					for (var j=1; j<9; j++) {				
-
+						var flip = "flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text"
 						if (item.y == i && item.x == j && item.contents == "br") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="br">&#9820</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="br">&#9820</div>')
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "bn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bn">&#9822</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="bn">&#9822</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bb") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bb">&#9821</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="bb">&#9821</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bq") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bq">&#9819</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="bq">&#9819</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bk") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bk">&#9818</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="bk">&#9818</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "bp") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="bp">&#9823</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="bp">&#9823</div>')
 						}
 
 
 
 						if (item.y == i && item.x == j && item.contents == "wr") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wr">&#9814</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wr">&#9814</div>')
 							//use images maybe instead of glyphicons if I can't get glyphicons to work
 						}
 						if (item.y == i && item.x == j && item.contents == "wn") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wn">&#9816</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wn">&#9816</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wb") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wb">&#9815</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wb">&#9815</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wq") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wq">&#9813</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wq">&#9813</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wk") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wk">&#9812</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wk">&#9812</div>')
 						}
 						if (item.y == i && item.x == j && item.contents == "wp") {
-							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece" data-title="wp">&#9817</div>')
+							$('.row' + i.toString() + '.column' + j.toString()).append('<div class="piece flip-horizontal x-grid-cell-inner x-column-header-text x-panel-header-text x-column-header-text x-panel-header-text" data-title="wp">&#9817</div>')
 						}
 						$('.row' + i.toString() + '.column' + j.toString()).on('click', function () {
 							if (postingFlag == true) {
