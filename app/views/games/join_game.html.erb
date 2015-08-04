@@ -69,33 +69,7 @@
 						</div>
 					</div>
 					<div class="col-sm-7">
-
-
-
-
-
-
-
-
-
-						<div class="modal board-modal">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						      </div>
-						      <div class="modal-body">
-						        
-
-
-
-
-
-
-
-
-
-
-						      	<% if (@gameo.turn == "white") %>
+						<% if (@gameo.turn == "white") %>
 							<% for j in 1..8 %>
 								<% if (j%2 != 0) %>
 									<div class="row">
@@ -150,44 +124,6 @@
 								<% end %>
 							<% end %>
 						<% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-						      </div>
-						    </div>
-						  </div>
-						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						
 					</div>
 					<div class="col-sm-2">
 						<br>
@@ -272,13 +208,6 @@ $(document).on('ready', function () {
 	function whatEver(){
 		console.log("Done")
 	}
-
-
-	
-	
-	$('.modal-board').modal();
-
-
 
 	function onModal (event) {
 		event.preventDefault();
