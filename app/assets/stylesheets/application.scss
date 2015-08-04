@@ -21,14 +21,27 @@
  .index-body {
  	background-color: #F0FFFF;
  }
-// body {
-// 	margin: 0;
-//  background-image: url(black.jpg);
-//  background-size: 100%;
-//     background-repeat: no-repeat;
-//  display: compact;
-//  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-// }
+
+ .join_game-body {
+	background-color: #FFF8DC;
+}
+.join_game-body {
+	margin: 0;
+ 	background-image: url(wood.jpg);
+ 	background-size: 100%;
+    background-repeat: no-repeat;
+ 	display: compact;
+ 	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.space-left {
+	background-image: url(space.gif);
+	color: #CCFFFF;
+}
+.space-right {
+	background-image: url(space.gif);
+	color: #CCFFFF;
+	width: 300px;
+}
 /*.display-user-count {
 	position: relative;
 	left: -800px;
@@ -86,9 +99,7 @@
 	font-size: 20px;
 }
 
-.join_game-body {
-	background-color: #FFF8DC;
-}
+
 
 .description {
 	padding-left: 18px
@@ -107,4 +118,11 @@
 	font-size: 50px;
 }
 
+.just-board {
+	box-shadow: 10px 10px 5px #888888;
+}
+
+// .leave-game {
+// 	font-size: 16px;
+// }
 

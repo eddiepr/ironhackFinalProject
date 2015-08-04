@@ -18,6 +18,12 @@
 				<div class="col-sm-6">
 					User: <%= current_user.email %>	
 				</div>	
+				<% if controller_name == "games" && action_name == "join_game" %>
+					<div class="col-sm-6"></div>
+					<div class="col-sm-2">
+						<a class="leave-game" href="/">Leave Game </a>
+					</div>
+				<% end %>
 			</div>
 		</div>
 

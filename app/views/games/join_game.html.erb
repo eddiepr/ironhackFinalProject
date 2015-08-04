@@ -1,10 +1,8 @@
 <% if user_signed_in? %>	
 		<body class="join_game-body">
-
 			<div class="modal fade js-modal">
 		  		<div class="modal-dialog">
 		    		<div class="modal-content">
-
 						<div class="modal-header">
 						<!-- Close button -->
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,26 +47,28 @@
 						<br>
 						<br>
 						<br>
-						<div class="timer-description">You have 60 seconds to make a move</div>
-						<div id="timer"></div>
+						<div class="space-left">
+							<div class="timer-description">You have 60 seconds to make a move</div>
+							<div id="timer"></div>
 
-						<br> 
-						<div class="turn">Turn:
-						</div>
-							<% if @gameo != nil %>
-								<div class="turn"><%= @gameo.turn %></div>
-							<% else %>
-								Turn: White
-							<% end %>
-						<br>
-						<br>
-						<br>
-						<div class="board-number-display">
-							Board number:
-							<%= @gmId %>
+							<br> 
+							<div class="turn">Turn:
+							</div>
+								<% if @gameo != nil %>
+									<div class="turn"><%= @gameo.turn %></div>
+								<% else %>
+									Turn: White
+								<% end %>
+							<br>
+							<br>
+							<br>
+							<div class="board-number-display">
+								Board number:
+								<%= @gmId %>
+							</div>
 						</div>
 					</div>
-					<div class="col-sm-7">
+					<div class="col-sm-7 just-board">
 						<% if (@gameo.turn == "white") %>
 							<% for j in 1..8 %>
 								<% if (j%2 != 0) %>
@@ -126,24 +126,21 @@
 						<% end %>
 					</div>
 					<div class="col-sm-2">
-						<br>
-						Your Stats
-						<br>
-						<a class="player-rating">Player Rating:</a> 0
-						<br>
-						<br>
-						<% turn_count = Turn.where(:user_id => current_user.id).count %>
-						Number of moves you have made: <%= turn_count %>
+						<div class="space-right">
+							<br>
+							Your Stats
+							<br>
+							<a class="player-rating">Player Rating:</a> 0
+							<br>
+							<br>
+							<% turn_count = Turn.where(:user_id => current_user.id).count %>
+							Number of moves you have made: <%= turn_count %>
+						</div>
 					</div>
 				</div>
 			<!-- render("partials/boardrow") %> -->
 			<!-- render("partials/boardrowEven") %> -->
-			<div class="row">
-				<div class="col-sm-5"></div>
-				<div class="col-sm-2">
-					<a href="/">Leave Game </a>
-				</div>
-			</div>
+			
 		</body>
 <% else %>
 	<h4>You must be logged in to join the game</h4>
