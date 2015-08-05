@@ -62,8 +62,12 @@
 }
 
 .space-right {
+	position: relative;
 	color: #CCFFFF;
 	background-color: rgba(0, 0, 0, 0.3);
+	top: -20px;
+	left: -20px;
+	height: 290px;
 	// -webkit-filter: blur(20px);
  //    -moz-filter: blur(20px);
  //    -o-filter: blur(20px);
@@ -214,7 +218,11 @@
 li {
 	list-style-type: none;
 }
-
+.zoom-title {
+	position: relative;
+	left: -21px;
+	top: -45px;
+}
 
 
 
