@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 		@firstgame = Game.first
 	end
 	def join_game
-		@gameo = Game.get_random_game
+		@gameo = Game.get_random_game(current_user)
 		#gm = Game.where(id is the lowest, finished == false, active == false)
 		@gmId = @gameo.id # this can screw up and not be the same game as is getting called in the ajax if 
 							#2 users make moves at close enough to teh same time

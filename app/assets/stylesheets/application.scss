@@ -18,6 +18,11 @@
    src: url(asset_path('glyphicons-halflings-regular.eot'));
    src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'), url(asset_path('glyphicons-halflings-regular.woff')) format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'), url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
  }
+
+ a {
+ 	// color: white;
+ 	text-decoration: underline;
+ }
  .index-body {
  	background-color: #F0FFFF;
  }
@@ -26,21 +31,18 @@
 	background-color: #FFF8DC;
 }
 .join_game-body {
-	margin: 0;
- 	background-image: url(wood.jpg);
+	// text-shadow: 2px 2px #ff0000;
+ 	background-image: url(wood2.jpg);
  	background-size: 100%;
     background-repeat: no-repeat;
  	display: compact;
- 	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 	// color: white;
 }
 .space-left {
-	background-image: url(space.gif);
 	color: #CCFFFF;
 }
 .space-right {
-	background-image: url(space.gif);
 	color: #CCFFFF;
-	width: 300px;
 }
 /*.display-user-count {
 	position: relative;
@@ -117,10 +119,17 @@
 .zoom-title {
 	font-size: 50px;
 }
-
-.just-board {
-	box-shadow: 10px 10px 5px #888888;
+.just-board{
+	// box-shadow: 10px 10px 5px #888888;
 }
+
+.player-rating{
+	color: #CCFFFF;
+}
+
+// .actually-just-board {
+// 	box-shadow: 10px 10px 5px #888888;
+// }
 
 // .leave-game {
 // 	font-size: 16px;

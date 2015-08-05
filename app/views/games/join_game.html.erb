@@ -38,6 +38,8 @@
 						</div>		
 					</div>
 					<div class="col-sm-9">
+						<div class="col-sm-2">
+						</div>
 						<div class="zoom-title"> Zoom Chess </div>
 					</div>
 				</div>
@@ -50,7 +52,6 @@
 						<div class="space-left">
 							<div class="timer-description">You have 60 seconds to make a move</div>
 							<div id="timer"></div>
-
 							<br> 
 							<div class="turn">Turn:
 							</div>
@@ -69,16 +70,17 @@
 						</div>
 					</div>
 					<div class="col-sm-7 just-board">
+						<div class="actually-just-board">
 						<% if (@gameo.turn == "white") %>
 							<% for j in 1..8 %>
 								<% if (j%2 != 0) %>
 									<div class="row">
 										<% for i in 1..8 %>
 											<% if (i%2 == 0) %>
-												<div class="<%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
+												<div class=" col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-even " data-row="<%= j%>" data-column="<%= i %>">
 												</div>
 											<% else %>
-												<div class="<%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
+												<div class="col-sm-1 <%= 'row' + j.to_s %> column <%= 'column' + i.to_s %> row-odd-column-odd " data-row="<%= j%>" data-column="<%= i %>">
 												</div>
 											<% end %>
 										<% end %>
@@ -124,9 +126,13 @@
 								<% end %>
 							<% end %>
 						<% end %>
+					  </div>
 					</div>
 					<div class="col-sm-2">
 						<div class="space-right">
+							<br>
+							<br>
+							<br>
 							<br>
 							Your Stats
 							<br>

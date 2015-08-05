@@ -2,7 +2,7 @@ class SquaresController < ApplicationController
 
 	def get_layout
 		# gm = Game.first#find_by(id: 2)
-		gm = Game.get_random_game
+		gm = Game.get_random_game(current_user)
 		#gm = Game.where(id is the lowest, finished == false, active == false)
 		gmId = gm.id
 		spaces = gm.squares.all
