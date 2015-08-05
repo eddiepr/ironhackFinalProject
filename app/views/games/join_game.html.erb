@@ -21,8 +21,6 @@
 			    	</div><!-- /.modal-content -->
 			  	</div><!-- /.modal-dialog -->
 			</div>
-
-
 			<% current_user.update_attribute(:active, true) %>
 			<% user_count = User.where(:active => true).count %>
 			<% game_count = Game.where(:finished => false).count %>
@@ -49,25 +47,28 @@
 						<br>
 						<br>
 						<br>
-						<div class="space-left">
-							<div class="timer-description">You have 60 seconds to make a move</div>
-							<div id="timer"></div>
-							<br> 
-							<div class="turn">Turn:
-							</div>
-								<% if @gameo != nil %>
-									<div class="turn"><%= @gameo.turn %></div>
-								<% else %>
-									Turn: White
-								<% end %>
-							<br>
-							<br>
-							<br>
-							<div class="board-number-display">
-								Board number:
-								<%= @gmId %>
+						<div class="absolute-left">
+							<div class="space-left">
+								<div class="timer-description">You have 60 seconds to make a move</div>
+								<div id="timer"></div>
+								<br> 
+								<div class="turn">Turn:
+								</div>
+									<% if @gameo != nil %>
+										<div class="turn"><%= @gameo.turn %></div>
+									<% else %>
+										Turn: White
+									<% end %>
+								<br>
+								<br>
+								<br>
+								<div class="board-number-display">
+									Board number:
+									<%= @gmId %>
+								</div>
 							</div>
 						</div>
+						
 					</div>
 					<div class="col-sm-7 just-board">
 						<div class="actually-just-board">
@@ -129,18 +130,36 @@
 					  </div>
 					</div>
 					<div class="col-sm-2">
+						<div class="absolute-right">
+							<div class="leave-game-div">
+								<a class="leave-game" href="/">Leave Game </a>
+							</div>
+							<br>
+							<br>
+							<br>
+							<br>
 						<div class="space-right">
-							<br>
-							<br>
-							<br>
-							<br>
 							Your Stats
 							<br>
 							<a class="player-rating">Player Rating:</a> 0
 							<br>
 							<br>
 							<% turn_count = Turn.where(:user_id => current_user.id).count %>
-							Number of moves you have made: <%= turn_count %>
+							Number of moves you have made: <%= turn_count %>								
+							<br>
+							<br>
+							<br>
+							<div class="toggle-chat">Chat
+							</div>
+						</div>
+						<div class="whole-chat">
+							<div class="chat-display">
+							</div>
+							<br>
+							<form class="chat-form">
+								<input class="chat-input-area" type="text"></input>
+								<button class="js-submit" type="submit">SUBMIT</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -191,6 +210,8 @@
 
 <script>
 $(document).on('ready', function () {
+
+	
 
 	$('#timer').timer({
 	    duration: 60,
@@ -407,6 +428,37 @@ $(document).on('ready', function () {
 		}
 	}
 
+
+
+
+
+
+	$(".toggle-chat").on("click", function () {
+		$(".whole-chat").toggle();
+	})
+
+
+	$(".chat-form").submit(function(e) {       
+      e.preventDefault();
+      var words = $(".chat-input-area").val();
+      $(".chat-input-area").val('');
+
+
+      $.ajax({
+		    type: "POST",
+		    url: "/chat",
+		    data: words,  //this is where I need to post the updated contents in games.id#.squares table.
+	    					// Also need to have a users table and update how many moves they made for that side in a 
+	    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
+		    success: onSaveSuccessActivePostChat,
+		    error: onSaveFailureActivePostChat,
+		}); 
+
+
+      console.log(words);
+
+    });
+
 	// function onSaveFailurePatchLayout () {
 
 	// }
@@ -434,6 +486,17 @@ $(document).on('ready', function () {
 		console.log("ran a get");
 		// console.log(response);
 		appendPieces (response);	
+	}
+
+	function appendPhrases (response) {
+		$(".chat-display").append(response.words);
+	}
+
+	function onSaveSuccessActivePostChat (response) {
+		appendPhrases (response);
+	}
+	function onSaveFailureActivePostChat (err) {
+		console.log(err)
 	}
 })
 </script>

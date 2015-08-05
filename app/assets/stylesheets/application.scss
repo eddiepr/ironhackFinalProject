@@ -36,8 +36,10 @@
 	font-size: 20px;
 	color: #FFFFCC;
 }
+.index-h2 {
+	color: #FFFFCC;
+}
  .index-body {
- 	
  	background-color: black;
  	background-image: url(sleek6.jpg);
  	
@@ -58,11 +60,15 @@
  	display: compact;
  	// color: white;
 }
-.space-left {
-	color: #CCFFFF;
-}
+
 .space-right {
 	color: #CCFFFF;
+	background-color: rgba(0, 0, 0, 0.3);
+	// -webkit-filter: blur(20px);
+ //    -moz-filter: blur(20px);
+ //    -o-filter: blur(20px);
+ //    -ms-filter: blur(20px);
+ //    filter: blur(20px);
 }
 /*.display-user-count {
 	position: relative;
@@ -162,10 +168,49 @@
 	font-size: 16px;
 }
 
+.chat-display{
+	background-color: #FFFFFF;
+	height: 200px;
+}
 
+.whole-chat {
+	display: none;
+}
 
+.toggle-chat {
+	text-decoration: underline;
+	color: #FFFFFF;
+}
 
+.absolute-left {
+	z-index: 1;
+	background-color: rgba(0,0,0,0.3);
+	left: -0px;
+	height: 300px;
+	width: 220px;
+}
 
+.space-left {
+	z-index: 2000;
+	color: #CCFFFF;
+}
+
+.leave-game-div {
+	position: relative;
+	top: -45px;
+}
+.leave-game {
+	color: #FFFFFF;
+}
+.email-join-game {
+	color: #FFFFFF;
+}
+.display-user-count {
+	color: #FFFFFF;
+}
+.logout-join-game {
+	color: #FFFFFF;
+}
 
 
 

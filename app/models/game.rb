@@ -13,7 +13,11 @@ class Game < ActiveRecord::Base
 		# end
 		if (user != nil)
 			turn_count = Turn.where(:user_id => user.id).count
-			if (turn_count %3 == 0) 
+			if (turn_count %5 == 0)
+				game_number = 4
+			elsif (turn_count %4 == 0)
+				game_number = 3
+			elsif (turn_count %3 == 0) 
 				game_number = 2
 			elsif (turn_count %2 == 0)
 				game_number = 1
