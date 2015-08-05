@@ -154,6 +154,8 @@
 						</div>
 						<div class="whole-chat">
 							<div class="chat-display">
+								<ul class="chat-ul">
+								</ul>
 							</div>
 							<br>
 							<form class="chat-form">
@@ -443,11 +445,14 @@ $(document).on('ready', function () {
       var words = $(".chat-input-area").val();
       $(".chat-input-area").val('');
 
+      comment = {
+				words: words
+		    }
 
       $.ajax({
 		    type: "POST",
 		    url: "/chat",
-		    data: words,  //this is where I need to post the updated contents in games.id#.squares table.
+		    data: comment,  //this is where I need to post the updated contents in games.id#.squares table.
 	    					// Also need to have a users table and update how many moves they made for that side in a 
 	    					// 	particular game.  Maybe with: Users has_many games through: newTable, Games has_many users through: newTable
 		    success: onSaveSuccessActivePostChat,
@@ -489,7 +494,10 @@ $(document).on('ready', function () {
 	}
 
 	function appendPhrases (response) {
-		$(".chat-display").append(response.words);
+		console.log(response);
+		for (var i; i < response.words.length; i++) {
+			$(".chat-display").append("<li>" + response.words[i] + "</li>");
+		}
 	}
 
 	function onSaveSuccessActivePostChat (response) {
