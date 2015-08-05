@@ -23,8 +23,27 @@
  	// color: white;
  	text-decoration: underline;
  }
+ .email {
+ 	color: #FFFFCC;
+ }
+ .stats {
+ 	color: #FFFFCC;
+ }
+ .index-h1 {
+ 	color: #FFFFCC;
+ }
+ .main-description {
+	font-size: 20px;
+	color: #FFFFCC;
+}
  .index-body {
- 	background-color: #F0FFFF;
+ 	
+ 	background-color: black;
+ 	background-image: url(sleek6.jpg);
+ 	
+ 	background-size: 100%;
+    background-repeat: no-repeat;
+ 	display: compact;
  }
 
  .join_game-body {
@@ -34,6 +53,7 @@
 	// text-shadow: 2px 2px #ff0000;
  	background-image: url(wood2.jpg);
  	background-size: 100%;
+ 	left: 400px;
     background-repeat: no-repeat;
  	display: compact;
  	// color: white;
@@ -97,9 +117,7 @@
 	border: 2px solid black;
 }
 
-.main-description {
-	font-size: 20px;
-}
+
 
 
 
@@ -134,4 +152,27 @@
 // .leave-game {
 // 	font-size: 16px;
 // }
+
+.zoom-title {
+	color: #CCFFFF;
+}
+
+.leave-game {
+	color: black;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

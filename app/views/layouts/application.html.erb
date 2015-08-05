@@ -15,9 +15,15 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-6">
-					User: <%= current_user.email %>	
-				</div>	
+				<% if controller_name == "games" && action_name == "index" %>
+					<div class="email col-sm-6">
+						User: <%= current_user.email %>	
+					</div>	
+				<% else %>
+					<div class=" col-sm-6">
+						User: <%= current_user.email %>	
+					</div>	
+				<% end %>
 				<% if controller_name == "games" && action_name == "join_game" %>
 					<div class="col-sm-6"></div>
 					<div class="col-sm-2">
