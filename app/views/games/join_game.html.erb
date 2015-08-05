@@ -337,6 +337,8 @@ $(document).on('ready', function () {
 								 //what is this supposed to do 
 								// console.log($(this));
 								if ( $(this).children().length > 0 ) {
+									$(this).addClass("clicked");
+									$(this).removeClass("column");
 									postingFlag = false;
 									console.log(this);
 									// console.log(i);

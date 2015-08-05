@@ -27,7 +27,29 @@
 	height: 70px;
 	background-color: #663300;
 }
-
+.column:hover {
+ 	background-image: url(highlight5.jpg);
+ 	
+ 
+    background-repeat: no-repeat;
+ 	display: compact; /* make this whatever you want */
+}
+.clicked {
+ 	background-image: url(highlight2.jpg);
+ 	
+ 
+    background-repeat: no-repeat;
+ 	display: compact; /* make this whatever you want */
+}
+// .row-even-column-odd:hover {
+// background: blue; /* make this whatever you want */
+// }
+// .row-odd-column-even:hover {
+// background: blue; /* make this whatever you want */
+// }
+// .row-odd-column-odd:hover {
+// background: blue; /* make this whatever you want */
+// }
 
 
 
