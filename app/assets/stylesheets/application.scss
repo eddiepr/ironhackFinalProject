@@ -41,7 +41,7 @@
 }
  .index-body {
  	background-color: black;
- 	background-image: url(sleek6.jpg);
+ 	background-image: asset-url("sleek6.jpg");
  	
  	background-size: 100%;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@
 }
 .join_game-body {
 	// text-shadow: 2px 2px #ff0000;
- 	background-image: url(wood2.jpg);
+ 	background-image: asset-url(wood2.jpg);
  	background-size: 100%;
  	left: 400px;
     background-repeat: no-repeat;

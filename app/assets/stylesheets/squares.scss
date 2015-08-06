@@ -28,14 +28,14 @@
 	background-color: #663300;
 }
 .column:hover {
- 	background-image: url(highlight5.jpg);
+ 	background-image: asset-url(highlight5.jpg);
  	
  
     background-repeat: no-repeat;
  	display: compact; /* make this whatever you want */
 }
 .clicked {
- 	background-image: url(highlight2.jpg);
+ 	background-image: asset-url(highlight2.jpg);
  	
  
     background-repeat: no-repeat;
