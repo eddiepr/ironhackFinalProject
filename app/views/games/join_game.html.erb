@@ -134,10 +134,14 @@
 							<div class="leave-game-div">
 								<a class="leave-game" href="/">Leave Game </a>
 							</div>
+							<div class="checkmate-button btn btn-primary">
+								declare checkmate
+							</div>
 							<br>
 							<br>
 							<br>
 							<br>
+						</div>
 						<div class="space-right">
 							Your Stats
 							<br>
@@ -145,7 +149,7 @@
 							<br>
 							<br>
 							<% turn_count = Turn.where(:user_id => current_user.id).count %>
-							Number of moves you have made: <%= turn_count %>								
+							Number of moves you have made: <%= turn_count %>
 							<br>
 							<br>
 							<br>

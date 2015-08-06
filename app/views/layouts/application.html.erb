@@ -12,12 +12,11 @@
 			<div class="row first_row">
 				<div class="the-logout col-sm-2">
 				<% if action_name == "join_game" %>
-					<% button_class = "logout-button" %>
+					<% button_class = "logout-button btn btn-primary" %>
 				<% else %>
 					<% button_class = "" %>
 				<% end %>
-
-					<%= link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: "#{button_class} btn btn-primary " %>
+					<%= link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: "#{button_class}  " %>
 				</div>
 			</div>
 			<div class="row">
