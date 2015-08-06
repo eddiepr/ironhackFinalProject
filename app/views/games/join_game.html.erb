@@ -510,9 +510,9 @@ $(document).on('ready', function () {
 
 	function appendPhrases (response) {
 		$(".chat-display").empty();
-		var emailName = response.email.split('@');
+		// var emailName = response.email.split('@');
 		for (var i = 0; i < response.words.length; i++) {
-			$(".chat-display").append("<li>" + emailName[0] + ":" + " " + response.words[i] + "</li>");
+			$(".chat-display").append("<li>" + response.words[i] + "</li>");
 		}
 		var chatbox = document.getElementById('chat-display')
 		chatbox.scrollTop = chatbox.scrollHeight
