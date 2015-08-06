@@ -146,6 +146,7 @@
 							Your Stats
 							<br>
 							<a class="player-rating">Player Rating:</a> 0
+							<%= current_user.rating %>
 							<br>
 							<br>
 							<% turn_count = Turn.where(:user_id => current_user.id).count %>
@@ -235,6 +236,9 @@ $(document).on('ready', function () {
 	var data;
 	var activeData;
 	var TheResponse;
+	var clickedPieceSquareDiv;
+	var moveToSquareDiv;
+	var pieceContent;
 
 	function whatEver(){
 		console.log("Done")
@@ -309,7 +313,6 @@ $(document).on('ready', function () {
 				$('.row' + i.toString() + '.column' + j.toString()).empty();
 			}
 		}
-		// console.log(response);
 		response.spaces.forEach(function (item) {
 
 			number = number + 1;  //the json object is sending me twice as many items as are in the database for some reason
@@ -365,10 +368,11 @@ $(document).on('ready', function () {
 								 //what is this supposed to do 
 								// console.log($(this));
 								if ( $(this).children().length > 0 ) {
+
 									$(this).addClass("clicked");
 									$(this).removeClass("column");
 									postingFlag = false;
-									console.log(this);
+									clickedPieceSquareDiv = $(this);
 									// console.log(i);
 									// console.log($(this).attr('data-column'));
 									// console.log($(this).attr('data-row'));
@@ -376,6 +380,7 @@ $(document).on('ready', function () {
 										y: $(this).attr('data-row')
 									}
 									contents = $(this).find('[data-title]').data('title');
+									pieceContent = $(this).find('[data-title]');
 									// console.log(contents);
 									movingFlag = true;
 									moveToSquare (response); 	
@@ -404,9 +409,14 @@ $(document).on('ready', function () {
 		    	updateGamesData: updateGamesData,
 		    	moveToSquareAndContents: moveToSquareAndContents
 		    }
+		    console.log(clickedPieceSquareDiv);
+		    clickedPieceSquareDiv.empty();
+		    moveToSquareDiv.empty();
+		    moveToSquareDiv.append(pieceContent);
 		    // console.log(moveToSquareAndContents)
 		    // console.log(clickedPieceSquare);
-			$.ajax({
+		    setTimeout(function(){ 
+	    		$.ajax({
 			    type: "PATCH",
 			    url: "/move",
 			    data: data,  //this is where I need to post the updated contents in games.id#.squares table.
@@ -415,6 +425,7 @@ $(document).on('ready', function () {
 			    success: onSaveSuccessPatch,
 			    error: onSaveFailurePatch,
 			});
+	    	}, 120);
 		}
 	}
 
@@ -424,6 +435,7 @@ $(document).on('ready', function () {
 			for (var j=1; j<9; j++) {					
 				$('.row' + i.toString() + '.column' + j.toString()).one('click', function(){
 					// console.log(contents);
+					moveToSquareDiv = $(this);
 					moveToSquareAndContents = {
 						x: $(this).attr('data-column'),
 						y: $(this).attr('data-row'),
@@ -434,10 +446,6 @@ $(document).on('ready', function () {
 			}
 		}
 	}
-
-
-
-
 
 
 	// $(".toggle-chat").on("click", function () {
@@ -575,7 +583,3 @@ $(document).on('ready', function () {
 	})
 })
 </script>
-
-
-
-
