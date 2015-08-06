@@ -218,7 +218,6 @@
 <script>
 $(document).on('ready', function () {
 
-	
 
 	$('#timer').timer({
 	    duration: 60,
@@ -415,8 +414,7 @@ $(document).on('ready', function () {
 		    moveToSquareDiv.append(pieceContent);
 		    // console.log(moveToSquareAndContents)
 		    // console.log(clickedPieceSquare);
-		    setTimeout(function(){ 
-	    		$.ajax({
+	    	$.ajax({
 			    type: "PATCH",
 			    url: "/move",
 			    data: data,  //this is where I need to post the updated contents in games.id#.squares table.
@@ -425,7 +423,7 @@ $(document).on('ready', function () {
 			    success: onSaveSuccessPatch,
 			    error: onSaveFailurePatch,
 			});
-	    	}, 120);
+	    	
 		}
 	}
 
