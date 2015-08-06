@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/move" => "squares#join_game"
   patch "/active" => "users#update_active"
   post "/chat" => "phrases#create"
+  get "/updateChat" => "phrases#update_display"
 
 
 

@@ -149,11 +149,11 @@
 							<br>
 							<br>
 							<br>
-							<div class="toggle-chat">Chat
-							</div>
+							<!-- <div class="toggle-chat">Chat
+							</div> -->
 						</div>
 						<div class="whole-chat">
-							<div class="chat-display">
+							<div class="chat-display" id="chat-display">
 								<ul class="chat-ul">
 								</ul>
 							</div>
@@ -435,9 +435,9 @@ $(document).on('ready', function () {
 
 
 
-	$(".toggle-chat").on("click", function () {
-		$(".whole-chat").toggle();
-	})
+	// $(".toggle-chat").on("click", function () {
+	// 	$(".whole-chat").toggle();
+	// })
 
 
 	$(".chat-form").submit(function(e) {       
@@ -494,10 +494,13 @@ $(document).on('ready', function () {
 	}
 
 	function appendPhrases (response) {
-		console.log(response);
-		for (var i; i < response.words.length; i++) {
+		$(".chat-display").empty();
+		for (var i = 0; i < response.words.length; i++) {
 			$(".chat-display").append("<li>" + response.words[i] + "</li>");
 		}
+		var chatbox = document.getElementById('chat-display')
+		chatbox.scrollTop = chatbox.scrollHeight
+		// $(".chat-display").scrollTop = $(".chat-display").scrollHeight;
 	}
 
 	function onSaveSuccessActivePostChat (response) {
@@ -506,6 +509,33 @@ $(document).on('ready', function () {
 	function onSaveFailureActivePostChat (err) {
 		console.log(err)
 	}
+
+	function onSaveSuccessUpdateChat (response) {
+		appendPhrases (response);
+	}
+
+	function onSaveFailureUpdateChat (err) {
+		console.log(err);
+	}
+
+	function updateChat () {
+    	setTimeout(function(){ 
+    		console.log("updating chat")
+    		$.ajax({
+			    type: "GET",
+			    url: "/updateChat",
+			    data: '',
+			    success: onSaveSuccessUpdateChat,
+			    error: onSaveFailureUpdateChat,
+			    dataType: "json"
+			});
+
+    		updateChat ();
+    	}, 2000);
+	}
+	updateChat ();
+
+
 })
 </script>
 

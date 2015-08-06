@@ -19,7 +19,7 @@ Square.create(:game_id => 1, :x => 3, :y => 1, :contents => "bb")
 Square.create(:game_id => 1, :x => 4, :y => 1, :contents => "bq")
 Square.create(:game_id => 1, :x => 5, :y => 1, :contents => "bk")
 Square.create(:game_id => 1, :x => 6, :y => 1, :contents => "bb")
-Square.create(:game_id => 1, :x => 7, :y => 1, :contents => "bk")
+Square.create(:game_id => 1, :x => 7, :y => 1, :contents => "bn")
 Square.create(:game_id => 1, :x => 8, :y => 1, :contents => "br")
 
 Square.create(:game_id => 1, :x => 1, :y => 2, :contents => "bp")

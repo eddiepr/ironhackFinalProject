@@ -9,10 +9,28 @@ class PhrasesController < ApplicationController
 		all_words = Phrase.all.each do |wrds|
 			all_words_array.push(wrds.words)
 		end
-		puts all_words
+		puts "all words array is below"
+		puts all_words_array
+		# test_array = [1,2,3,4,5,6,7,8]
+		# puts test_array
 		render json: {
-			:user_id => current_user,
+			:user_id => current_user.id,
 			:words => all_words_array 
-		}  #putting finishing this chat off until later
+		}  
+	end
+
+	def update_display
+		all_words_array = []
+		all_words = Phrase.all.each do |wrds|
+			all_words_array.push(wrds.words)
+		end
+		puts "all words array is below"
+		puts all_words_array
+		# test_array = [1,2,3,4,5,6,7,8]
+		# puts test_array
+		render json: {
+			:user_id => current_user.id,
+			:words => all_words_array 
+		}
 	end
 end
