@@ -35,9 +35,7 @@ class GamesController < ApplicationController
 	end
 
 	def update
-
-
-		
+			
 		# game = Game.find(params[:id])
 		data = params[:updateGamesData]
 		puts data

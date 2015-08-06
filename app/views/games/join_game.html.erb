@@ -234,6 +234,7 @@ $(document).on('ready', function () {
 	var contents;
 	var data;
 	var activeData;
+	var TheResponse;
 
 	function whatEver(){
 		console.log("Done")
@@ -481,6 +482,7 @@ $(document).on('ready', function () {
 	}
 
 	function onSaveSuccessPatch (response) {
+		TheResponse = response;
 		console.log("ran a patch");
 		// console.log(response);
 		location.reload();
@@ -492,6 +494,7 @@ $(document).on('ready', function () {
 		console.log("error getting chess pieces layout");
 	}
 	function onSaveSuccess (response) {
+		TheResponse = response;
 		console.log("ran a get");
 		// console.log(response);
 		appendPieces (response);	
@@ -499,8 +502,9 @@ $(document).on('ready', function () {
 
 	function appendPhrases (response) {
 		$(".chat-display").empty();
+		var emailName = response.email.split('@');
 		for (var i = 0; i < response.words.length; i++) {
-			$(".chat-display").append("<li>" + response.words[i] + "</li>");
+			$(".chat-display").append("<li>" + emailName[0] + ":" + " " + response.words[i] + "</li>");
 		}
 		var chatbox = document.getElementById('chat-display')
 		chatbox.scrollTop = chatbox.scrollHeight
@@ -521,25 +525,54 @@ $(document).on('ready', function () {
 	function onSaveFailureUpdateChat (err) {
 		console.log(err);
 	}
+	function onSaveSuccessPointsPatch (response) {
+		location.reload();
+	}
+	function onSaveFailurePointsPatch (err) {
+		console.log(err);
+	}
 
 	function updateChat () {
     	setTimeout(function(){ 
     		console.log("updating chat")
-    		$.ajax({
-			    type: "GET",
-			    url: "/updateChat",
-			    data: '',
-			    success: onSaveSuccessUpdateChat,
-			    error: onSaveFailureUpdateChat,
-			    dataType: "json"
-			});
-
+    		chatGet ();
     		updateChat ();
     	}, 2000);
 	}
+	function chatGet () {
+		$.ajax({
+		    type: "GET",
+		    url: "/updateChat",
+		    data: '',
+		    success: onSaveSuccessUpdateChat,
+		    error: onSaveFailureUpdateChat,
+		    dataType: "json"
+		});
+	}
+	chatGet ();
 	updateChat ();
 
+	function updateUserPoints () {
+		var gameId = TheResponse.gmId;
+		var updateGamesData = {
+			id: gameId,
+			finishedStatus: true
+		}
+		data = {
+	    	updateGamesData: updateGamesData
+	    }
+		$.ajax({
+		    type: "PATCH",
+		    url: "/points",
+		    data: data,
+		    success: onSaveSuccessPointsPatch,
+		    error: onSaveFailurePointsPatch,
+		});
+	}
 
+	$(".checkmate-button").on("click", function () {
+		updateUserPoints ();
+	})
 })
 </script>
 

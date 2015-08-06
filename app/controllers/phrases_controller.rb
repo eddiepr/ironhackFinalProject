@@ -15,7 +15,8 @@ class PhrasesController < ApplicationController
 		# puts test_array
 		render json: {
 			:user_id => current_user.id,
-			:words => all_words_array 
+			:words => all_words_array,
+			:email => current_user.email 
 		}  
 	end
 
@@ -30,7 +31,8 @@ class PhrasesController < ApplicationController
 		# puts test_array
 		render json: {
 			:user_id => current_user.id,
-			:words => all_words_array 
+			:words => all_words_array,
+			:email => current_user.email
 		}
 	end
 end

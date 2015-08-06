@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch "/active" => "users#update_active"
   post "/chat" => "phrases#create"
   get "/updateChat" => "phrases#update_display"
+  patch "/points" => "users#update_points"
 
 
 
